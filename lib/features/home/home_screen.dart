@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../members/member_placeholder_screen.dart';
+import '../members/mahroos/mahroos_bio_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback? onLogout;
@@ -198,10 +199,12 @@ class _MemberCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => MemberPlaceholderScreen(
-              memberNumber: memberNumber,
-              memberName: memberName,
-            ),
+            builder: (_) => memberNumber == 1
+    ? const MahroosBioScreen()
+    : MemberPlaceholderScreen(
+        memberNumber: memberNumber,
+        memberName: memberName,
+      ),
           ),
         );
       },
