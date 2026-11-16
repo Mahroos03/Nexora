@@ -268,13 +268,15 @@ class MahroosBioScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              letterSpacing: 2,
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+                letterSpacing: 2,
+              ),
             ),
           ),
         ],
@@ -364,11 +366,13 @@ class MahroosBioScreen extends StatelessWidget {
         children: [
           Icon(icon, color: primary, size: 21),
           const SizedBox(width: 13),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 14,
+              ),
             ),
           ),
         ],
@@ -391,11 +395,13 @@ class _InterestItem extends StatelessWidget {
         children: [
           Icon(icon, color: const Color(0xFF6685FF), size: 21),
           const SizedBox(width: 13),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 14,
+              ),
             ),
           ),
         ],
