@@ -69,11 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final crossAxisCount = constraints.maxWidth >= 900
-                ? 3
-                : constraints.maxWidth >= 600
+            final crossAxisCount = constraints.maxWidth < 480
+                ? 1
+                : constraints.maxWidth >= 900
                     ? 3
-                    : 2;
+                    : constraints.maxWidth >= 600
+                        ? 3
+                        : 2;
 
             return SingleChildScrollView(
               padding: const EdgeInsets.all(20),
@@ -200,11 +202,11 @@ class _MemberCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (_) => memberNumber == 1
-    ? const MahroosBioScreen()
-    : MemberPlaceholderScreen(
-        memberNumber: memberNumber,
-        memberName: memberName,
-      ),
+                ? const MahroosBioScreen()
+                : MemberPlaceholderScreen(
+                    memberNumber: memberNumber,
+                    memberName: memberName,
+                  ),
           ),
         );
       },
