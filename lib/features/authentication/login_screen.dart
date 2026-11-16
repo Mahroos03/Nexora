@@ -54,8 +54,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
       switch (e.code) {
         case 'user-not-found':
-          message = 'No account found with this email.';
-          break;
         case 'wrong-password':
         case 'invalid-credential':
           message = 'Incorrect email or password.';
