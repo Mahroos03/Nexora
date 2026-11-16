@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
-import 'features/home/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+import 'firebase_options.dart';
+import 'features/authentication/auth_gate.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const NexoraApp());
 }
 
@@ -20,7 +29,7 @@ class NexoraApp extends StatelessWidget {
           seedColor: const Color(0xFF5577F7),
         ),
       ),
-      home: const HomeScreen(),
+      home: const AuthGate(),
     );
   }
 }
