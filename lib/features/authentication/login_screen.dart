@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,6 +19,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isLoading = false;
   bool _obscurePassword = true;
+  bool _rememberMe = true;
+  bool _isSignUpMode = false;
+
+  static const Color brandNavy = Color(0xFF0F172A);
+  static const Color brandIndigo = Color(0xFF4F46E5);
+  static const Color brandAccent = Color(0xFF06B6D4);
+  static const Color bgSurface = Color(0xFFF8FAFC);
 
   @override
   void dispose() {
@@ -28,61 +34,103 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  Future<void> _login() async {
+  void _fillDemoCredentials() {
+    setState(() {
+      _emailController.text = 'admin@nexora.dev';
+      _passwordController.text = 'Password@123';
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Demo test credentials filled into form.'),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  Future<void> _submitAuth() async {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
 
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+
     try {
-      await _authService.signIn(
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
-      );
-
-      if (!mounted) return;
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Login successful! Welcome to Nexora.'),
-          backgroundColor: Colors.green,
-        ),
-      );
-
-      // Home screen navigation will be integrated later.
+      if (_isSignUpMode) {
+        await _authService.register(
+          email: email,
+          password: password,
+        );
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Account created successfully! Welcome to Nexora.'),
+            backgroundColor: Color(0xFF10B981),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      } else {
+        await _authService.signIn(
+          email: email,
+          password: password,
+        );
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Signed in successfully! Welcome back.'),
+            backgroundColor: Color(0xFF10B981),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
     } on FirebaseAuthException catch (e) {
-      String message;
-
+      String errorMessage;
       switch (e.code) {
         case 'user-not-found':
+          errorMessage = 'No user registered with this email. Try signing up.';
+          break;
         case 'wrong-password':
+          errorMessage = 'Incorrect password entered. Please check and try again.';
+          break;
         case 'invalid-credential':
-          message = 'Incorrect email or password.';
+          errorMessage = 'Invalid email or password combination.';
+          break;
+        case 'email-already-in-use':
+          errorMessage = 'This email is already registered. Please sign in instead.';
           break;
         case 'invalid-email':
-          message = 'Please enter a valid email address.';
+          errorMessage = 'The email address format is not valid.';
+          break;
+        case 'weak-password':
+          errorMessage = 'Password should be at least 6 characters long.';
           break;
         case 'too-many-requests':
-          message = 'Too many attempts. Please try again later.';
+          errorMessage = 'Access temporarily blocked due to too many failed attempts. Try again later.';
+          break;
+        case 'network-request-failed':
+          errorMessage = 'Network connection error. Please verify your internet access.';
           break;
         default:
-          message = e.message ?? 'Login failed. Please try again.';
+          errorMessage = e.message ?? 'Authentication failed (${e.code}). Please try again.';
       }
 
       if (!mounted) return;
-
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(message),
-          backgroundColor: Colors.redAccent,
+          content: Text(errorMessage),
+          backgroundColor: const Color(0xFFEF4444),
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 4),
         ),
       );
-    } catch (_) {
+    } catch (e) {
       if (!mounted) return;
-
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Something went wrong. Please try again.'),
-          backgroundColor: Colors.redAccent,
+        SnackBar(
+          content: Text('Unexpected error: ${e.toString()}'),
+          backgroundColor: const Color(0xFFEF4444),
+          behavior: SnackBarBehavior.floating,
         ),
       );
     } finally {
@@ -94,34 +142,38 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const navy = Color(0xFF101A35);
-    const blue = Color(0xFF5577F7);
-    const background = Color(0xFFF5F7FC);
-
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor: bgSurface,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 26,
-              vertical: 30,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 430),
+              constraints: const BoxConstraints(maxWidth: 440),
               child: Form(
                 key: _formKey,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Logo
+                    // Brand Icon & Badge
                     Center(
                       child: Container(
-                        height: 75,
-                        width: 75,
+                        height: 76,
+                        width: 76,
                         decoration: BoxDecoration(
-                          color: navy,
-                          borderRadius: BorderRadius.circular(24),
+                          gradient: const LinearGradient(
+                            colors: [brandNavy, brandIndigo, brandAccent],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(22),
+                          boxShadow: [
+                            BoxShadow(
+                              color: brandIndigo.withValues(alpha: 0.35),
+                              blurRadius: 20,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
                         ),
                         child: const Icon(
                           Icons.hub_rounded,
@@ -131,9 +183,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 22),
+                    const SizedBox(height: 18),
 
-                    // App name
+                    // App Title & Tagline
                     const Center(
                       child: Text(
                         'NEXORA',
@@ -141,208 +193,270 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 4,
-                          color: navy,
+                          color: brandNavy,
                         ),
                       ),
                     ),
-
-                    const SizedBox(height: 8),
-
+                    const SizedBox(height: 4),
                     const Center(
                       child: Text(
-                        'Nine identities. One connection.',
+                        'Nine Identities • One Unified Platform',
                         style: TextStyle(
                           fontSize: 13,
-                          color: Colors.blueGrey,
+                          color: Color(0xFF64748B),
+                          fontWeight: FontWeight.w500,
                         ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 55),
-
-                    const Text(
-                      'Welcome back!',
-                      style: TextStyle(
-                        fontSize: 29,
-                        fontWeight: FontWeight.bold,
-                        color: navy,
-                      ),
-                    ),
-
-                    const SizedBox(height: 9),
-
-                    const Text(
-                      'Sign in to explore your Nexora community.',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.blueGrey,
                       ),
                     ),
 
                     const SizedBox(height: 32),
 
-                    // Email label
-                    const Text(
-                      'Email address',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: navy,
+                    // Main Form Card
+                    Container(
+                      padding: const EdgeInsets.all(26),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(color: const Color(0xFFE2E8F0)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.04),
+                            blurRadius: 16,
+                            offset: const Offset(0, 6),
+                          ),
+                        ],
                       ),
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your email',
-                        prefixIcon: const Icon(Icons.email_outlined),
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE5E9F2),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: const BorderSide(
-                            color: blue,
-                            width: 1.5,
-                          ),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'Please enter your email.';
-                        }
-
-                        if (!RegExp(
-                          r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
-                        ).hasMatch(value.trim())) {
-                          return 'Enter a valid email address.';
-                        }
-
-                        return null;
-                      },
-                    ),
-
-                    const SizedBox(height: 22),
-
-                    // Password label
-                    const Text(
-                      'Password',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: navy,
-                      ),
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    TextFormField(
-                      controller: _passwordController,
-                      obscureText: _obscurePassword,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your password',
-                        prefixIcon: const Icon(Icons.lock_outline),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _obscurePassword = !_obscurePassword;
-                            });
-                          },
-                          icon: Icon(
-                            _obscurePassword
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
-                          ),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE5E9F2),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: const BorderSide(
-                            color: blue,
-                            width: 1.5,
-                          ),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password.';
-                        }
-
-                        if (value.length < 6) {
-                          return 'Password must contain at least 6 characters.';
-                        }
-
-                        return null;
-                      },
-                    ),
-
-                    const SizedBox(height: 30),
-
-                    // Login button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 56,
-                      child: ElevatedButton(
-                        onPressed: _isLoading ? null : _login,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: blue,
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                        ),
-                        child: _isLoading
-                            ? const SizedBox(
-                                height: 23,
-                                width: 23,
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                  strokeWidth: 2.5,
-                                ),
-                              )
-                            : const Text(
-                                'Sign In',
-                                style: TextStyle(
-                                  fontSize: 16,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Card Headline & Toggle
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                _isSignUpMode ? 'Create Account' : 'Welcome Back',
+                                style: const TextStyle(
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
+                                  color: brandNavy,
                                 ),
                               ),
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isSignUpMode = !_isSignUpMode;
+                                  });
+                                },
+                                style: TextButton.styleFrom(
+                                  visualDensity: VisualDensity.compact,
+                                  foregroundColor: brandIndigo,
+                                ),
+                                child: Text(
+                                  _isSignUpMode ? 'Sign In Instead' : 'Register',
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            _isSignUpMode
+                                ? 'Join the Nexora community network'
+                                : 'Sign in using your Firebase credentials',
+                            style: const TextStyle(fontSize: 13, color: Color(0xFF64748B)),
+                          ),
+
+                          const SizedBox(height: 24),
+
+                          // Email Field (MANDATORY REQUIREMENT: Firebase Auth Email & Password)
+                          const Text(
+                            'Email Address',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: brandNavy,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          TextFormField(
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              hintText: 'name@example.com',
+                              prefixIcon: const Icon(Icons.mail_outline_rounded, size: 20),
+                              filled: true,
+                              fillColor: const Color(0xFFF8FAFC),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: const BorderSide(color: brandIndigo, width: 1.5),
+                              ),
+                            ),
+                            validator: (val) {
+                              if (val == null || val.trim().isEmpty) {
+                                return 'Please enter your email address.';
+                              }
+                              if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(val.trim())) {
+                                return 'Please enter a valid email format.';
+                              }
+                              return null;
+                            },
+                          ),
+
+                          const SizedBox(height: 18),
+
+                          // Password Field
+                          const Text(
+                            'Password',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: brandNavy,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          TextFormField(
+                            controller: _passwordController,
+                            obscureText: _obscurePassword,
+                            textInputAction: TextInputAction.done,
+                            onFieldSubmitted: (_) => _submitAuth(),
+                            decoration: InputDecoration(
+                              hintText: 'Enter your password (6+ characters)',
+                              prefixIcon: const Icon(Icons.lock_outline_rounded, size: 20),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                                  size: 20,
+                                ),
+                                onPressed: () {
+                                  setState(() => _obscurePassword = !_obscurePassword);
+                                },
+                              ),
+                              filled: true,
+                              fillColor: const Color(0xFFF8FAFC),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: const BorderSide(color: brandIndigo, width: 1.5),
+                              ),
+                            ),
+                            validator: (val) {
+                              if (val == null || val.isEmpty) {
+                                return 'Please enter your password.';
+                              }
+                              if (val.length < 6) {
+                                return 'Password must be at least 6 characters.';
+                              }
+                              return null;
+                            },
+                          ),
+
+                          const SizedBox(height: 12),
+
+                          // Remember Me Row
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: Checkbox(
+                                  value: _rememberMe,
+                                  activeColor: brandIndigo,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                  onChanged: (val) {
+                                    setState(() => _rememberMe = val ?? true);
+                                  },
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              const Text(
+                                'Remember me on this device',
+                                style: TextStyle(fontSize: 12, color: Color(0xFF64748B)),
+                              ),
+                            ],
+                          ),
+
+                          const SizedBox(height: 22),
+
+                          // Submit Button with Loading Indicator
+                          SizedBox(
+                            width: double.infinity,
+                            height: 52,
+                            child: ElevatedButton(
+                              onPressed: _isLoading ? null : _submitAuth,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: brandIndigo,
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                elevation: 0,
+                              ),
+                              child: _isLoading
+                                  ? const SizedBox(
+                                      height: 22,
+                                      width: 22,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                        strokeWidth: 2.5,
+                                      ),
+                                    )
+                                  : Text(
+                                      _isSignUpMode ? 'Create Account' : 'Sign In with Firebase',
+                                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                                    ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
 
-                    const SizedBox(height: 35),
+                    const SizedBox(height: 20),
 
+                    // Quick Demo Credentials Tool
+                    OutlinedButton.icon(
+                      onPressed: _fillDemoCredentials,
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF475569),
+                        side: const BorderSide(color: Color(0xFFCBD5E1)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                      ),
+                      icon: const Icon(Icons.auto_fix_high_rounded, size: 18),
+                      label: const Text(
+                        'Autofill Sample Credentials',
+                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    // Security Footer
                     const Center(
-                      child: Text(
-                        'NEXORA  •  CONNECTING PEOPLE',
-                        style: TextStyle(
-                          fontSize: 10,
-                          letterSpacing: 1.5,
-                          color: Colors.blueGrey,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.shield_outlined, size: 14, color: Color(0xFF94A3B8)),
+                          SizedBox(width: 6),
+                          Text(
+                            'Secured by Google Firebase Authentication',
+                            style: TextStyle(fontSize: 11, color: Color(0xFF94A3B8), fontWeight: FontWeight.w500),
+                          ),
+                        ],
                       ),
                     ),
                   ],

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nexora/features/home/home_screen.dart';
 
 void main() {
-  testWidgets('Nexora home screen loads successfully',
+  testWidgets('Nexora home screen loads and displays members successfully',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
@@ -12,14 +12,12 @@ void main() {
       ),
     );
 
-    // Check home screen title
-    expect(find.text('Meet Our Team'), findsOneWidget);
+    // Verify Nexora branding and directory headline
+    expect(find.text('NEXORA'), findsOneWidget);
+    expect(find.text('Community Directory'), findsOneWidget);
 
-    // Check tagline
-    expect(find.text('Nine identities. One connection.'), findsOneWidget);
-
-    // Check member cards
-    expect(find.text('Member 1'), findsOneWidget);
-    expect(find.text('Member 9'), findsOneWidget);
+    // Verify first and last member names are present
+    expect(find.text('Mohamed Mahroos'), findsOneWidget);
+    expect(find.text('Buddhika Sandaru'), findsOneWidget);
   });
 }
