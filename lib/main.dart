@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'firebase_options.dart';
+import 'core/theme/app_theme.dart';
 import 'features/authentication/auth_gate.dart';
 
 Future<void> main() async {
@@ -21,14 +22,8 @@ class NexoraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Nexora',
-      theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: 'Roboto',
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF5577F7),
-        ),
-      ),
+      title: 'Nexora Community',
+      theme: AppTheme.lightTheme,
       home: const AuthGate(),
     );
   }
