@@ -3,15 +3,15 @@ import '../../core/models/member_model.dart';
 import '../../core/state/favorites_manager.dart';
 import '../../core/widgets/member_avatar.dart';
 
-import '../members/dilki/dilki_bio_screen.dart' as dilki;
-import '../members/dismini/dismini_bio_screen.dart' as dismini;
-import '../members/imal/imal_bio_screen.dart' as imal;
+// import '../members/dilki/dilki_bio_screen.dart' as dilki;
+// import '../members/dismini/dismini_bio_screen.dart' as dismini;
+// import '../members/imal/imal_bio_screen.dart' as imal;
 import '../members/mahroos/mahroos_bio_screen.dart' as mahroos;
-import '../members/naduni/naduni_bio_screen.dart' as naduni;
-import '../members/nimthaka/nimthaka_bio_screen.dart' as nimthaka;
-import '../members/pamodya/pamodya_bio_screen.dart' as pamodya;
-import '../members/rukshan/rukshan_bio_screen.dart' as rukshan;
-import '../members/sandaru/sandaru_bio_screen.dart' as sandaru;
+// import '../members/naduni/naduni_bio_screen.dart' as naduni;
+// import '../members/nimthaka/nimthaka_bio_screen.dart' as nimthaka;
+// import '../members/pamodya/pamodya_bio_screen.dart' as pamodya;
+// import '../members/rukshan/rukshan_bio_screen.dart' as rukshan;
+// import '../members/sandaru/sandaru_bio_screen.dart' as sandaru;
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback? onLogout;
@@ -87,22 +87,22 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (memberId) {
       case 1:
         return const mahroos.MahroosBioScreen();
-      case 2:
-        return const dilki.DilkiBioScreen();
-      case 3:
-        return const dismini.DisminiBioScreen();
-      case 4:
-        return const imal.ImalBioScreen();
-      case 5:
-        return const naduni.NaduniBioScreen();
-      case 6:
-        return const nimthaka.NimthakaBioScreen();
-      case 7:
-        return const pamodya.PamodyaBioScreen();
-      case 8:
-        return const rukshan.RukshanBioScreen();
-      case 9:
-        return const sandaru.SandaruBioScreen();
+      // case 2:
+      //   return const dilki.DilkiBioScreen();
+      // case 3:
+      //   return const dismini.DisminiBioScreen();
+      // case 4:
+      //   return const imal.ImalBioScreen();
+      // case 5:
+      //   return const naduni.NaduniBioScreen();
+      // case 6:
+      //   return const nimthaka.NimthakaBioScreen();
+      // case 7:
+      //   return const pamodya.PamodyaBioScreen();
+      // case 8:
+      //   return const rukshan.RukshanBioScreen();
+      // case 9:
+      //   return const sandaru.SandaruBioScreen();
       default:
         return const mahroos.MahroosBioScreen();
     }
