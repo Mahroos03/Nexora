@@ -87,21 +87,21 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (memberId) {
       case 1:
         return const mahroos.MahroosBioScreen();
-      // case 2:
-      //   return const dilki.DilkiBioScreen();
-      // case 3:
+      case 2:
+        // return const dilki.DilkiBioScreen();
+      case 3:
       //   return const dismini.DisminiBioScreen();
-      // case 4:
+      case 4:
       //   return const imal.ImalBioScreen();
-      // case 5:
+      case 5:
       //   return const naduni.NaduniBioScreen();
-      // case 6:
+      case 6:
       //   return const nimthaka.NimthakaBioScreen();
-      // case 7:
+      case 7:
       //   return const pamodya.PamodyaBioScreen();
-      // case 8:
+      case 8:
       //   return const rukshan.RukshanBioScreen();
-      // case 9:
+      case 9:
       //   return const sandaru.SandaruBioScreen();
       default:
         return const mahroos.MahroosBioScreen();
