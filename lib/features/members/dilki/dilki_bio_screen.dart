@@ -279,7 +279,7 @@ class _DilkiBioScreenState extends State<DilkiBioScreen>
           Image.asset(
             _heroBackgroundPath!,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+            errorBuilder: (_, _, _) => const SizedBox.shrink(),
           ),
         if (_heroBackgroundPath != null)
           DecoratedBox(
@@ -316,7 +316,7 @@ class _DilkiBioScreenState extends State<DilkiBioScreen>
           child: Image.asset(
             _photoPath,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => Container(
+            errorBuilder: (_, _, _) => Container(
               color: palette.chip,
               child: Icon(Icons.person, size: 80, color: palette.accent),
             ),
@@ -723,10 +723,7 @@ class _StatTile extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 2),
-          Text(
-            label,
-            style: TextStyle(fontSize: 12, color: palette.subText),
-          ),
+          Text(label, style: TextStyle(fontSize: 12, color: palette.subText)),
         ],
       ),
     );
@@ -775,7 +772,7 @@ class _ContactRow extends StatelessWidget {
             ],
           ),
         ),
-        if (trailing != null) trailing!,
+        ?trailing,
       ],
     );
   }
@@ -834,8 +831,9 @@ class _TimelineItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: Theme(
-                  data: Theme.of(context)
-                      .copyWith(dividerColor: Colors.transparent),
+                  data: Theme.of(
+                    context,
+                  ).copyWith(dividerColor: Colors.transparent),
                   child: ExpansionTile(
                     initiallyExpanded: initiallyExpanded,
                     iconColor: palette.accent,
@@ -851,8 +849,7 @@ class _TimelineItem extends StatelessWidget {
                       qualification.period,
                       style: TextStyle(color: palette.accent),
                     ),
-                    childrenPadding:
-                        const EdgeInsets.fromLTRB(16, 0, 16, 14),
+                    childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 14),
                     expandedCrossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(

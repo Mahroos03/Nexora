@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         return const mahroos.MahroosBioScreen();
       case 2:
-        // return const dilki.DilkiBioScreen();
+        return const dilki.DilkiBioScreen();
       case 3:
       //   return const dismini.DisminiBioScreen();
       case 4:
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 7:
       //   return const pamodya.PamodyaBioScreen();
       case 8:
-      //   return const rukshan.RukshanBioScreen();
+        return const rukshan.RukshanBioScreen();
       case 9:
       //   return const sandaru.SandaruBioScreen();
       default:
