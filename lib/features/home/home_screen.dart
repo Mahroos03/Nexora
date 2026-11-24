@@ -3,7 +3,7 @@ import '../../core/models/member_model.dart';
 import '../../core/state/favorites_manager.dart';
 import '../../core/widgets/member_avatar.dart';
 
-// import '../members/dilki/dilki_bio_screen.dart' as dilki;
+import '../members/dilki/dilki_bio_screen.dart' as dilki;
 // import '../members/dismini/dismini_bio_screen.dart' as dismini;
 // import '../members/imal/imal_bio_screen.dart' as imal;
 import '../members/mahroos/mahroos_bio_screen.dart' as mahroos;
