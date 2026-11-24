@@ -432,13 +432,13 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 8),
 
             // Portrait Avatar
-            MemberAvatar(
-              name: member.fullName,
-              imageUrl: member.avatarUrl,
-              radius: 36,
-              borderWidth: 2,
-              borderColor: brandIndigo.withValues(alpha: 0.2),
-            ),
+           MemberPhoto(
+  name: member.fullName,
+  imagePath: member.avatarUrl,
+  size: 80,
+  borderWidth: 2,
+  borderColor: brandIndigo.withValues(alpha: 0.2),
+),
 
             const SizedBox(height: 12),
 
@@ -521,13 +521,13 @@ class _HomeScreenState extends State<HomeScreen> {
             MaterialPageRoute(builder: (_) => _routeToMemberBio(member.id)),
           );
         },
-        leading: MemberAvatar(
-          name: member.fullName,
-          imageUrl: member.avatarUrl,
-          radius: 26,
-          borderWidth: 2,
-          borderColor: brandIndigo.withValues(alpha: 0.2),
-        ),
+        leading: MemberPhoto(
+  name: member.fullName,
+  imagePath: member.avatarUrl,
+  size: 54,
+  borderWidth: 2,
+  borderColor: brandIndigo.withValues(alpha: 0.2),
+),
         title: Text(
           member.fullName,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: brandNavy),
