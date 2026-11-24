@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/models/member_model.dart';
 import '../../../core/state/favorites_manager.dart';
-import '../../../core/widgets/member_avatar.dart';
 
 /// Design Style: Editorial Paper (light theme), populated from Rukshan's CV.
 class RukshanBioScreen extends StatefulWidget {
@@ -34,7 +33,7 @@ class _Ref {
 }
 
 class _RukshanBioScreenState extends State<RukshanBioScreen> {
-  final MemberData member = NexoraMembers.getById(1);
+  final MemberData member = NexoraMembers.getById(8);
   final FavoritesManager _favManager = FavoritesManager();
   bool _isLiked = false;
 
@@ -44,6 +43,7 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
   static const String _email = 'rukshanmohottige@gmail.com';
   static const String _phone = '+94 74 134 2646';
   static const String _address = 'Kandy, Sri Lanka';
+  static const String _photoPath = 'assets/images/rukshan.jpg';
 
   static const String _summary =
       'Information Technology student at the Institute of Technology, University of '
@@ -292,14 +292,7 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
     return Center(
       child: Column(
         children: [
-          MemberAvatar(
-            name: _name,
-            imageUrl: member.avatarUrl,
-            radius: 52,
-            borderWidth: 3,
-            borderColor: forest,
-            gradientColors: const [Color(0xFF1F6F5C), Color(0xFFC8553D)],
-          ),
+          _buildProfilePhoto(),
           const SizedBox(height: 14),
           const Text(
             _name,
@@ -337,6 +330,51 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildProfilePhoto() {
+    const double size = 112;
+    return Container(
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: const LinearGradient(
+          colors: [forest, terracotta],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 14,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: ClipOval(
+        child: Container(
+          width: size,
+          height: size,
+          color: sand,
+          child: Image.asset(
+            _photoPath,
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter, // keeps the face in frame
+            errorBuilder: (context, error, stackTrace) => const Center(
+              child: Text(
+                'RM',
+                style: TextStyle(
+                  fontFamily: serif,
+                  color: forest,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
