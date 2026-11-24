@@ -3,7 +3,7 @@ import '../../../core/models/member_model.dart';
 import '../../../core/state/favorites_manager.dart';
 import '../../../core/widgets/member_avatar.dart';
 
-/// Cyber-Tech Dark Slate profile, populated from Rukshan's CV.
+/// Design Style: Editorial Paper (light theme), populated from Rukshan's CV.
 class RukshanBioScreen extends StatefulWidget {
   const RukshanBioScreen({super.key});
 
@@ -115,13 +115,16 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
         'ruwanminis@itum.mrt.ac.lk', '+94 77 855 8303'),
   ];
 
-  // ---------- THEME ----------
-  static const Color bgDark = Color(0xFF0A0F1D);
-  static const Color cardDark = Color(0xFF141D30);
-  static const Color cardDarkElevated = Color(0xFF1E2B45);
-  static const Color cyanAccent = Color(0xFF38BDF8);
-  static const Color indigoAccent = Color(0xFF818CF8);
-  static const Color greenAccent = Color(0xFF10B981);
+  // ---------- THEME (edit here to re-skin) ----------
+  static const Color bgPaper = Color(0xFFF7F3EC);
+  static const Color card = Color(0xFFFFFFFF);
+  static const Color ink = Color(0xFF1F2933);
+  static const Color muted = Color(0xFF6B7280);
+  static const Color line = Color(0xFFE5DED2);
+  static const Color forest = Color(0xFF1F6F5C);
+  static const Color terracotta = Color(0xFFC8553D);
+  static const Color sand = Color(0xFFEFE8DA);
+  static const String serif = 'serif';
 
   @override
   void initState() {
@@ -141,7 +144,7 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(_isLiked ? 'Endorsed $_name!' : 'Removed endorsement'),
-        backgroundColor: cyanAccent,
+        backgroundColor: forest,
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 1),
       ),
@@ -149,386 +152,358 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
   }
 
   BoxDecoration get _cardDecoration => BoxDecoration(
-        color: cardDark,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
+        color: card,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: line),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       );
 
   @override
   Widget build(BuildContext context) {
+    final double halfWidth = (MediaQuery.of(context).size.width - 36 - 10) / 2;
+
     return Scaffold(
-      backgroundColor: bgDark,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: 240,
-            pinned: true,
-            backgroundColor: bgDark,
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
+      backgroundColor: bgPaper,
+      appBar: AppBar(
+        backgroundColor: bgPaper,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: ink, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              _isLiked ? Icons.favorite : Icons.favorite_border,
+              color: _isLiked ? terracotta : ink,
             ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  _isLiked ? Icons.favorite : Icons.favorite_border,
-                  color: _isLiked ? const Color(0xFFF43F5E) : Colors.white70,
-                ),
-                onPressed: _toggleLike,
-              ),
-            ],
-            flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                fit: StackFit.expand,
-                children: [
-                  ClipPath(
-                    clipper: _TechDiagonalClipper(),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Color(0xFF1E1B4B), Color(0xFF0369A1), Color(0xFF0F766E)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 15,
-                    left: 20,
-                    right: 20,
-                    child: Row(
-                      children: [
-                        MemberAvatar(
-                          name: _name,
-                          imageUrl: member.avatarUrl,
-                          radius: 46,
-                          borderWidth: 3,
-                          borderColor: cyanAccent,
-                          gradientColors: const [Color(0xFF38BDF8), Color(0xFF4F46E5)],
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text(
-                                _name,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.5,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              const Text(
-                                _role,
-                                style: TextStyle(color: cyanAccent, fontSize: 12, fontWeight: FontWeight.w500),
-                              ),
-                              const SizedBox(height: 6),
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                                decoration: BoxDecoration(
-                                  color: indigoAccent.withValues(alpha: 0.2),
-                                  borderRadius: BorderRadius.circular(6),
-                                  border: Border.all(color: indigoAccent.withValues(alpha: 0.4)),
-                                ),
-                                child: const Text(
-                                  'HNDIT · University of Moratuwa',
-                                  style: TextStyle(color: indigoAccent, fontSize: 10, fontWeight: FontWeight.w600),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(18, 10, 18, 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Live stats
-                  ListenableBuilder(
-                    listenable: _favManager,
-                    builder: (context, _) {
-                      return Row(
-                        children: [
-                          _buildStatCard('Endorsements', '${_favManager.getEndorsementCount(member.id)}', Icons.bolt, cyanAccent),
-                          const SizedBox(width: 10),
-                          _buildStatCard('Projects', '${_projects.length}', Icons.code, indigoAccent),
-                          const SizedBox(width: 10),
-                          _buildStatCard('Certifications', '${_certs.length}', Icons.verified, greenAccent),
-                        ],
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Contact
-                  _buildSectionHeader('CONTACT & LOCATION', Icons.alternate_email),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: _cardDecoration,
-                    child: Column(
-                      children: [
-                        _buildContactRow(Icons.email_outlined, 'Email Address', _email, cyanAccent),
-                        const Divider(color: Colors.white10, height: 20),
-                        _buildContactRow(Icons.location_on_outlined, 'Location', _address, indigoAccent),
-                        const Divider(color: Colors.white10, height: 20),
-                        _buildContactRow(Icons.phone_outlined, 'Phone', _phone, greenAccent),
-                        const Divider(color: Colors.white10, height: 20),
-                        _buildContactRow(Icons.link, 'Profiles', 'LinkedIn | GitHub', cyanAccent),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Summary
-                  _buildSectionHeader('PROFESSIONAL SUMMARY', Icons.badge_outlined),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: _cardDecoration,
-                    child: const Text(
-                      _summary,
-                      style: TextStyle(color: Colors.white70, fontSize: 14, height: 1.6),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Education
-                  _buildSectionHeader('EDUCATION', Icons.history_edu),
-                  ..._education.map(_buildEducationItem),
-                  const SizedBox(height: 24),
-
-                  // Projects
-                  _buildSectionHeader('PROJECTS', Icons.rocket_launch_outlined),
-                  ..._projects.map(_buildProjectItem),
-                  const SizedBox(height: 24),
-
-                  // Certifications
-                  _buildSectionHeader('CERTIFICATIONS', Icons.workspace_premium_outlined),
-                  ..._certs.map(_buildCertItem),
-                  const SizedBox(height: 24),
-
-                  // Technical skills
-                  _buildSectionHeader('TECHNICAL SKILLS', Icons.terminal),
-                  ..._skills.entries.map((e) => _buildSkillGroup(e.key, e.value)),
-                  const SizedBox(height: 24),
-
-                  // Soft skills
-                  _buildSectionHeader('SOFT SKILLS', Icons.people_outline),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 10,
-                    children: _softSkills.map((s) => _buildChip(s, cyanAccent, withIcon: true)).toList(),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // References
-                  _buildSectionHeader('REFERENCES', Icons.supervisor_account_outlined),
-                  ..._refs.map(_buildRefItem),
-                  const SizedBox(height: 30),
-
-                  // Endorse button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton.icon(
-                      onPressed: _toggleLike,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: _isLiked ? const Color(0xFFF43F5E) : cyanAccent,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                      ),
-                      icon: Icon(_isLiked ? Icons.favorite : Icons.thumb_up_alt_outlined),
-                      label: Text(
-                        _isLiked ? 'Endorsed (Tap to Undo)' : 'Endorse Rukshan',
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            onPressed: _toggleLike,
           ),
         ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(18, 0, 18, 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildHeader(),
+            const SizedBox(height: 20),
+
+            // Live stats
+            ListenableBuilder(
+              listenable: _favManager,
+              builder: (context, _) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  decoration: _cardDecoration,
+                  child: Row(
+                    children: [
+                      _buildStat('${_favManager.getEndorsementCount(member.id)}', 'Endorsements', terracotta),
+                      _statDivider(),
+                      _buildStat('${_projects.length}', 'Projects', forest),
+                      _statDivider(),
+                      _buildStat('${_certs.length}', 'Certifications', ink),
+                    ],
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 28),
+
+            _buildSectionTitle('Professional Summary'),
+            Text(
+              _summary,
+              style: const TextStyle(color: ink, fontSize: 14, height: 1.7),
+            ),
+            const SizedBox(height: 28),
+
+            _buildSectionTitle('Education'),
+            ...List.generate(_education.length,
+                (i) => _buildEducationItem(_education[i], isLast: i == _education.length - 1)),
+            const SizedBox(height: 28),
+
+            _buildSectionTitle('Projects'),
+            ...List.generate(_projects.length, (i) => _buildProjectItem(_projects[i], i + 1)),
+            const SizedBox(height: 28),
+
+            _buildSectionTitle('Certifications'),
+            Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: _certs.map((c) => _buildCertItem(c, halfWidth)).toList(),
+            ),
+            const SizedBox(height: 28),
+
+            _buildSectionTitle('Technical Skills'),
+            ..._skills.entries.map((e) => _buildSkillGroup(e.key, e.value)),
+            const SizedBox(height: 14),
+
+            _buildSectionTitle('Soft Skills'),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _softSkills.map((s) => _buildChip(s, terracotta)).toList(),
+            ),
+            const SizedBox(height: 28),
+
+            _buildSectionTitle('References'),
+            ..._refs.map(_buildRefItem),
+          ],
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(18, 10, 18, 12),
+          decoration: const BoxDecoration(
+            color: bgPaper,
+            border: Border(top: BorderSide(color: line)),
+          ),
+          child: SizedBox(
+            height: 50,
+            child: ElevatedButton.icon(
+              onPressed: _toggleLike,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: _isLiked ? terracotta : forest,
+                foregroundColor: Colors.white,
+                elevation: 0,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+              icon: Icon(_isLiked ? Icons.favorite : Icons.thumb_up_alt_outlined, size: 20),
+              label: Text(
+                _isLiked ? 'Endorsed (Tap to Undo)' : 'Endorse Rukshan',
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
 
   // ---------- WIDGET BUILDERS ----------
-  Widget _buildSectionHeader(String title, IconData icon) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Row(
+  Widget _buildHeader() {
+    return Center(
+      child: Column(
         children: [
-          Icon(icon, size: 16, color: cyanAccent),
-          const SizedBox(width: 8),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 13,
+          MemberAvatar(
+            name: _name,
+            imageUrl: member.avatarUrl,
+            radius: 52,
+            borderWidth: 3,
+            borderColor: forest,
+            gradientColors: const [Color(0xFF1F6F5C), Color(0xFFC8553D)],
+          ),
+          const SizedBox(height: 14),
+          const Text(
+            _name,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: serif,
+              color: ink,
+              fontSize: 26,
               fontWeight: FontWeight.bold,
-              letterSpacing: 1.5,
             ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            _role,
+            style: TextStyle(color: forest, fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.6),
+          ),
+          const SizedBox(height: 6),
+          const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.location_on_outlined, size: 14, color: muted),
+              SizedBox(width: 4),
+              Text(_address, style: TextStyle(color: muted, fontSize: 12.5)),
+            ],
+          ),
+          const SizedBox(height: 14),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              _buildContactPill(Icons.email_outlined, _email),
+              _buildContactPill(Icons.phone_outlined, _phone),
+              _buildContactPill(Icons.link, 'LinkedIn | GitHub'),
+            ],
           ),
         ],
       ),
     );
   }
 
-  Widget _buildStatCard(String label, String value, IconData icon, Color color) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-        decoration: BoxDecoration(
-          color: cardDark,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: color.withValues(alpha: 0.2)),
-        ),
-        child: Column(
-          children: [
-            Icon(icon, size: 20, color: color),
-            const SizedBox(height: 6),
-            Text(value, style: TextStyle(color: color, fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 2),
-            Text(label,
-                style: const TextStyle(color: Colors.white54, fontSize: 10), textAlign: TextAlign.center),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildContactRow(IconData icon, String label, String value, Color iconColor) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(icon, size: 20, color: iconColor),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(label, style: const TextStyle(color: Colors.white54, fontSize: 11)),
-              const SizedBox(height: 2),
-              Text(value,
-                  style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500)),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildChip(String text, Color color, {bool withIcon = false}) {
+  Widget _buildContactPill(IconData icon, String text) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
       decoration: BoxDecoration(
-        color: cardDarkElevated,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        color: sand,
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (withIcon) ...[
-            Icon(Icons.check_circle_outline, size: 14, color: color),
-            const SizedBox(width: 6),
-          ],
-          Text(text, style: const TextStyle(color: Colors.white, fontSize: 12)),
+          Icon(icon, size: 14, color: forest),
+          const SizedBox(width: 6),
+          Text(text, style: const TextStyle(color: ink, fontSize: 12)),
         ],
       ),
     );
   }
 
-  Widget _buildEducationItem(_Edu e) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: cardDark,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
-      ),
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            width: 4,
+            height: 20,
             decoration: BoxDecoration(
-              color: indigoAccent.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(10),
+              color: terracotta,
+              borderRadius: BorderRadius.circular(2),
             ),
-            child: const Icon(Icons.school, size: 20, color: indigoAccent),
           ),
-          const SizedBox(width: 12),
-          Expanded(
+          const SizedBox(width: 10),
+          Text(
+            title,
+            style: const TextStyle(
+              fontFamily: serif,
+              color: ink,
+              fontSize: 19,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStat(String value, String label, Color color) {
+    return Expanded(
+      child: Column(
+        children: [
+          Text(
+            value,
+            style: TextStyle(fontFamily: serif, color: color, fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 2),
+          Text(label, style: const TextStyle(color: muted, fontSize: 11)),
+        ],
+      ),
+    );
+  }
+
+  Widget _statDivider() => Container(width: 1, height: 32, color: line);
+
+  Widget _buildChip(String text, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
+      ),
+      child: Text(text, style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.w600)),
+    );
+  }
+
+  Widget _buildEducationItem(_Edu e, {required bool isLast}) {
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            width: 22,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Text(e.institution,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
-                    ),
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: cyanAccent.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(e.period,
-                          style: const TextStyle(
-                              color: cyanAccent, fontSize: 10, fontWeight: FontWeight.bold)),
-                    ),
-                  ],
+                const SizedBox(height: 4),
+                Container(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
+                    color: bgPaper,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: forest, width: 3),
+                  ),
                 ),
-                const SizedBox(height: 4),
-                Text(e.program, style: const TextStyle(color: cyanAccent, fontSize: 12)),
-                const SizedBox(height: 4),
-                Text(e.location, style: const TextStyle(color: Colors.white60, fontSize: 12)),
+                if (!isLast) Expanded(child: Container(width: 2, color: line)),
               ],
             ),
           ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: isLast ? 0 : 18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    e.period,
+                    style: const TextStyle(color: terracotta, fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    e.institution,
+                    style: const TextStyle(color: ink, fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(e.program, style: const TextStyle(color: forest, fontSize: 13)),
+                  const SizedBox(height: 2),
+                  Text(e.location, style: const TextStyle(color: muted, fontSize: 12)),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildProjectItem(_Project p) {
+  Widget _buildProjectItem(_Project p, int index) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
+      margin: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.all(16),
       decoration: _cardDecoration,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(p.title,
-              style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 6),
-          Text(p.tech,
-              style: const TextStyle(
-                  color: cyanAccent, fontSize: 11, fontStyle: FontStyle.italic)),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                index.toString().padLeft(2, '0'),
+                style: const TextStyle(
+                  fontFamily: serif,
+                  color: terracotta,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  p.title,
+                  style: const TextStyle(color: ink, fontSize: 14.5, fontWeight: FontWeight.bold, height: 1.35),
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 8),
+          Text(
+            p.tech,
+            style: const TextStyle(color: forest, fontSize: 12, fontStyle: FontStyle.italic),
+          ),
+          const SizedBox(height: 10),
           ...p.points.map(
             (pt) => Padding(
               padding: const EdgeInsets.only(bottom: 6),
@@ -536,13 +511,12 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Padding(
-                    padding: EdgeInsets.only(top: 5),
-                    child: Icon(Icons.circle, size: 6, color: indigoAccent),
+                    padding: EdgeInsets.only(top: 7),
+                    child: Icon(Icons.circle, size: 5, color: terracotta),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: Text(pt,
-                        style: const TextStyle(color: Colors.white70, fontSize: 12.5, height: 1.5)),
+                    child: Text(pt, style: const TextStyle(color: ink, fontSize: 12.5, height: 1.55)),
                   ),
                 ],
               ),
@@ -553,32 +527,22 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
     );
   }
 
-  Widget _buildCertItem(_Cert c) {
+  Widget _buildCertItem(_Cert c, double width) {
     return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 10),
+      width: width,
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: cardDark,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
-      ),
-      child: Row(
+      decoration: _cardDecoration,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.verified_outlined, size: 20, color: greenAccent),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(c.title,
-                    style: const TextStyle(
-                        color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
-                const SizedBox(height: 2),
-                Text(c.issuer, style: const TextStyle(color: Colors.white54, fontSize: 11.5)),
-              ],
-            ),
+          const Icon(Icons.workspace_premium_outlined, size: 22, color: forest),
+          const SizedBox(height: 8),
+          Text(
+            c.title,
+            style: const TextStyle(color: ink, fontSize: 13, fontWeight: FontWeight.bold, height: 1.3),
           ),
+          const SizedBox(height: 4),
+          Text(c.issuer, style: const TextStyle(color: muted, fontSize: 11.5, height: 1.3)),
         ],
       ),
     );
@@ -586,17 +550,19 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
 
   Widget _buildSkillGroup(String title, List<String> items) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title,
-              style: const TextStyle(color: Colors.white54, fontSize: 11, letterSpacing: 0.5)),
+          Text(
+            title.toUpperCase(),
+            style: const TextStyle(color: muted, fontSize: 11, fontWeight: FontWeight.w600, letterSpacing: 1),
+          ),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: items.map((s) => _buildChip(s, indigoAccent)).toList(),
+            children: items.map((s) => _buildChip(s, forest)).toList(),
           ),
         ],
       ),
@@ -612,41 +578,23 @@ class _RukshanBioScreenState extends State<RukshanBioScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(r.name,
-              style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 4),
-          Text('${r.post}, ${r.org}',
-              style: const TextStyle(color: cyanAccent, fontSize: 12)),
-          const SizedBox(height: 8),
+          Text(r.name, style: const TextStyle(color: ink, fontSize: 14.5, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 2),
+          Text('${r.post}, ${r.org}', style: const TextStyle(color: forest, fontSize: 12.5)),
+          const SizedBox(height: 10),
           Row(children: [
-            const Icon(Icons.email_outlined, size: 14, color: Colors.white54),
+            const Icon(Icons.email_outlined, size: 14, color: muted),
             const SizedBox(width: 8),
-            Expanded(
-                child: Text(r.email, style: const TextStyle(color: Colors.white70, fontSize: 12))),
+            Expanded(child: Text(r.email, style: const TextStyle(color: ink, fontSize: 12.5))),
           ]),
           const SizedBox(height: 4),
           Row(children: [
-            const Icon(Icons.phone_outlined, size: 14, color: Colors.white54),
+            const Icon(Icons.phone_outlined, size: 14, color: muted),
             const SizedBox(width: 8),
-            Text(r.phone, style: const TextStyle(color: Colors.white70, fontSize: 12)),
+            Text(r.phone, style: const TextStyle(color: ink, fontSize: 12.5)),
           ]),
         ],
       ),
     );
   }
-}
-
-class _TechDiagonalClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0, size.height - 40);
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }
