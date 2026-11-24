@@ -3,6 +3,7 @@ import '../../../core/models/member_model.dart';
 import '../../../core/state/favorites_manager.dart';
 import '../../../core/widgets/member_avatar.dart';
 
+
 /// Design Style 1: Cyber-Tech Dark Slate Architecture
 /// Distinctive features: Custom sliver header, diagonal ClipPath,
 /// dark mode neon highlights, metric counter row, glowing timeline nodes,

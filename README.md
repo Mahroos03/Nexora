@@ -17,7 +17,7 @@ Nexora is a Flutter community directory for browsing a nine-member technology te
 ## Tech stack
 
 - Flutter (stable channel)
-- Dart `^3.12.2`
+- Dart `^3.11.4`
 - Firebase Core `^5.1.0`
 - Firebase Auth `^7.0.1`
 - Flutter Test and Flutter Lints
