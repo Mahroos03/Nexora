@@ -4,11 +4,11 @@ import '../../../core/state/favorites_manager.dart';
 import '../../../core/widgets/member_avatar.dart';
 
 /// Cyber-Tech Dark Slate profile, populated from Rukshan's CV.
-class MahroosBioScreen extends StatefulWidget {
-  const MahroosBioScreen({super.key});
+class RukshanBioScreen extends StatefulWidget {
+  const RukshanBioScreen({super.key});
 
   @override
-  State<MahroosBioScreen> createState() => _MahroosBioScreenState();
+  State<RukshanBioScreen> createState() => _RukshanBioScreenState();
 }
 
 // ---------- Simple data holders ----------
@@ -33,7 +33,7 @@ class _Ref {
   const _Ref(this.name, this.post, this.org, this.email, this.phone);
 }
 
-class _MahroosBioScreenState extends State<MahroosBioScreen> {
+class _RukshanBioScreenState extends State<RukshanBioScreen> {
   final MemberData member = NexoraMembers.getById(1);
   final FavoritesManager _favManager = FavoritesManager();
   bool _isLiked = false;
