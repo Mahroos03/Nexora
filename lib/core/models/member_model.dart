@@ -25,7 +25,7 @@ class MemberData {
   final List<String> softSkills;
   final List<String> specialTalents;
   final List<String> technicalSkills;
-  final String avatarUrl;
+  final String avatarUrl; // asset path (assets/images/...) or http(s) URL
 
   const MemberData({
     required this.id,
@@ -99,7 +99,7 @@ class NexoraMembers {
         'Flutter', 'Dart', 'Java', 'Spring Boot', 'React',
         'Firebase', 'PostgreSQL', 'Docker', 'Git'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/mahroos.jpg',
     ),
     MemberData(
       id: 2,
@@ -154,7 +154,7 @@ class NexoraMembers {
         'Figma', 'Flutter UI', 'Adobe XD', 'HTML5/CSS3',
         'Tailwind', 'Design Systems', 'Micro-animations'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/dilki.jpg',
     ),
     MemberData(
       id: 3,
@@ -209,7 +209,7 @@ class NexoraMembers {
         'Dart', 'Java', 'C++', 'SQL', 'Git',
         'Selenium', 'Postman', 'Flutter', 'Firebase'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/dismini.jpg',
     ),
     MemberData(
       id: 4,
@@ -263,7 +263,7 @@ class NexoraMembers {
         'Node.js', 'Python', 'Go', 'PostgreSQL',
         'Redis', 'REST APIs', 'Docker', 'Linux/Bash'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/imal.jpg',
     ),
     MemberData(
       id: 5,
@@ -317,7 +317,7 @@ class NexoraMembers {
         'Flutter UI', 'Dart', 'Figma', 'Adobe Illustrator',
         'Photoshop', 'CSS3/Sass', 'Lottie Animations'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/naduni.jpg',
     ),
     MemberData(
       id: 6,
@@ -371,7 +371,7 @@ class NexoraMembers {
         'Flutter', 'C / C++', 'Python', 'Arduino',
         'MQTT', 'Bluetooth Low Energy', 'Firebase'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/nimthaka.jpg',
     ),
     MemberData(
       id: 7,
@@ -425,61 +425,55 @@ class NexoraMembers {
         'Docker', 'Kubernetes', 'GitHub Actions', 'Linux',
         'Terraform', 'Python', 'Bash Scripting', 'Flutter'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/pamodya.jpg',
     ),
     MemberData(
       id: 8,
       fullName: 'Rukshan Mohottige',
       shortName: 'Rukshan',
-      role: 'Cross-Platform Mobile & Games Engineer',
-      bio: 'Energetic software craftsman creating hyper-responsive interactive experiences, 60fps animations, and mobile games.',
-      email: 'rukshan.m@nexora.dev',
-      address: 'Station Road, Gampaha, Sri Lanka',
-      phone: '+94 75 432 1098',
+      role: 'Software Engineering',
+      bio: 'Information Technology student at the Institute of Technology, University of Moratuwa, with hands-on experience designing and building full-stack web applications, RESTful services, and database systems.',
+      email: 'rukshanmohottige@gmail.com',
+      address: 'Kandy, Sri Lanka',
+      phone: '+94 74 134 2646',
       qualifications: [
         QualificationItem(
-          title: 'National Diploma in Technology (NDT) in IT',
+          title: 'Higher National Diploma in Information Technology',
           institution: 'Institute of Technology, University of Moratuwa',
           year: '2023 - Present',
-          details: 'Game Engine Architecture, Mobile Graphics & Computer Vision.',
+          details: 'Homagama, Sri Lanka.',
         ),
         QualificationItem(
-          title: 'G.C.E. Advanced Level (Technology Stream)',
-          institution: 'Bandaranayake College, Gampaha',
+          title: 'GCE Advanced Level',
+          institution: 'Dharmaraja College, Kandy',
           year: '2022',
-          details: 'Engineering Technology, Science for Tech & ICT (3 As).',
+          details: 'Kandy, Sri Lanka.',
         ),
         QualificationItem(
-          title: 'G.C.E. Ordinary Level',
-          institution: 'Bandaranayake College, Gampaha',
-          year: '2019',
-          details: '9 As with Western Province ICT Competition Winner.',
+          title: 'AI/ML Engineer – Stage 1',
+          institution: 'Centre for Open and Distance Education, SLIIT',
+          year: '',
+          details: 'Certification.',
         ),
         QualificationItem(
-          title: 'Unity Certified Associate Game Developer',
-          institution: 'Unity Technologies',
-          year: '2024',
-          details: 'C# scripting, 2D/3D physics, particle systems, shader graphs.',
+          title: 'Getting Started with Docker',
+          institution: 'Simplilearn',
+          year: '',
+          details: 'Certification.',
         ),
       ],
       softSkills: [
-        'High Energy Leadership',
-        'Fast Iteration & Prototyping',
-        'Collaborative Brainstorming',
-        'Resilience Under Tight Deadlines',
-        'User Psychology Analysis',
+        'Problem Solving',
+        'Teamwork & Collaboration',
+        'Adaptability',
+        'Clear Communication',
       ],
-      specialTalents: [
-        'Basketball (Provincial Championship Gold Medalist)',
-        '3D Game Design & Shader Programming',
-        'Swimming & Lifesaving Certification',
-        'Beatboxing & Electronic Music Synthesizers',
-      ],
+      specialTalents: [],
       technicalSkills: [
-        'Flutter', 'Dart', 'Unity 3D', 'C#',
-        'Flame Engine', 'OpenGL/GLSL', 'Blender'
+        'Java', 'Python', 'PHP', 'JavaScript', 'Spring Boot',
+        'Flutter', 'React', 'MySQL', 'Firebase', 'Docker', 'Git'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/rukshan.jpg',
     ),
     MemberData(
       id: 9,
@@ -533,7 +527,7 @@ class NexoraMembers {
         'Python', 'Pandas', 'Flutter', 'Dart',
         'FastAPI', 'PostgreSQL', 'Scikit-learn', 'Tableau'
       ],
-      avatarUrl: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
+      avatarUrl: 'assets/images/sandaru.jpg',
     ),
   ];
 
