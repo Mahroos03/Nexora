@@ -6,11 +6,11 @@ class DisminiBioScreen extends StatelessWidget {
   static const Color navy = Color(0xFF172554);
   static const Color lavender = Color(0xFFC4B5FD);
   static const Color background = Color(0xFFF8F7FF);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
-
       appBar: AppBar(
         backgroundColor: navy,
         foregroundColor: Colors.white,
@@ -46,10 +46,11 @@ class DisminiBioScreen extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: lavender,
                     ),
-
                     child: const CircleAvatar(
                       radius: 65,
                       backgroundColor: Colors.white,
+                      backgroundImage:
+                          AssetImage('assets/images/dismini.png'),
                       backgroundImage: AssetImage('assets/images/dismini.png'),
                     ),
                   ),
@@ -85,7 +86,6 @@ class DisminiBioScreen extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.all(20),
-
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -98,6 +98,11 @@ class DisminiBioScreen extends StatelessWidget {
                       'University of Moratuwa. I am passionate about UI/UX design '
                       'and software development. I enjoy creating simple, attractive '
                       'and user-friendly digital experiences.',
+                      style: TextStyle(
+                        fontSize: 14,
+                        height: 1.7,
+                        color: navy,
+                      ),
                       style: TextStyle(fontSize: 14, height: 1.7, color: navy),
                     ),
                   ),
@@ -143,6 +148,7 @@ class DisminiBioScreen extends StatelessWidget {
                   sectionTitle('Technical Skills', Icons.code),
 
                   infoCard(
+                    child: const InteractiveSkills(),
                     child: Wrap(
                       spacing: 8,
                       runSpacing: 10,
@@ -202,6 +208,10 @@ class DisminiBioScreen extends StatelessWidget {
                         InterestItem(
                           Icons.music_note,
                           'Playing Musical Instruments',
+                        ),
+                        interestItem(
+                          Icons.movie,
+                          'Watching Movies',
                         ),
                         InterestItem(Icons.movie, 'Watching Movies'),
                       ],
@@ -275,13 +285,16 @@ class DisminiBioScreen extends StatelessWidget {
   static Widget sectionTitle(String title, IconData icon) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-
       child: Row(
         children: [
+          Icon(
+            icon,
+            color: navy,
+            size: 23,
+          ),
           Icon(icon, color: navy, size: 23),
 
           const SizedBox(width: 10),
-
           Text(
             title,
             style: const TextStyle(
@@ -300,7 +313,6 @@ class DisminiBioScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(18),
-
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
@@ -313,13 +325,161 @@ class DisminiBioScreen extends StatelessWidget {
           ),
         ],
       ),
-
       child: child,
     );
   }
 }
 
+// --------------------------------------------------
+// INTERACTIVE TECHNICAL SKILLS
+// State Management: setState()
+// --------------------------------------------------
+
+class InteractiveSkills extends StatefulWidget {
+  const InteractiveSkills({super.key});
+
+  @override
+  State<InteractiveSkills> createState() =>
+      _InteractiveSkillsState();
+}
+
+class _InteractiveSkillsState extends State<InteractiveSkills> {
+
+  String? selectedSkill;
+
+  static const Map<String, String> skillDescriptions = {
+    'HTML': 'Used to structure content and elements on web pages.',
+
+    'CSS': 'Used to style web pages and create attractive layouts.',
+
+    'JavaScript':
+        'Used to add interactive features and dynamic behaviour to websites.',
+
+    'React.js':
+        'Used to build interactive and reusable user interface components.',
+
+    'Bootstrap':
+        'Used to create responsive and mobile-friendly web layouts.',
+
+    'MySQL':
+        'Used to store, organize and manage data in relational databases.',
+
+    'Java':
+        'A programming language used to develop object-oriented applications.',
+
+    'Figma':
+        'Used to create wireframes, prototypes and user interface designs.',
+
+    'Git & GitHub':
+        'Used to manage code versions and collaborate on software projects.',
+
+    'Flutter & Dart':
+        'Used to develop cross-platform mobile applications.',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Select a skill to learn more:',
+          style: TextStyle(
+            color: DisminiBioScreen.navy,
+            fontSize: 13,
+          ),
+        ),
+
+        const SizedBox(height: 15),
+
+        // SKILL SELECTION BUTTONS
+        Wrap(
+          spacing: 8,
+          runSpacing: 10,
+          children: skillDescriptions.keys.map((skill) {
+            final isSelected = selectedSkill == skill;
+
+            return ChoiceChip(
+              label: Text(skill),
+              selected: isSelected,
+              selectedColor: DisminiBioScreen.lavender,
+              backgroundColor: const Color(0xFFEDE9FE),
+              labelStyle: TextStyle(
+                color: DisminiBioScreen.navy,
+                fontWeight: isSelected
+                    ? FontWeight.bold
+                    : FontWeight.w600,
+                fontSize: 12,
+              ),
+              onSelected: (selected) {
+                setState(() {
+                  selectedSkill = selected ? skill : null;
+                });
+              },
+            );
+          }).toList(),
+        ),
+
+        const SizedBox(height: 18),
+
+        // SELECTED SKILL DESCRIPTION
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child: Container(
+            key: ValueKey(selectedSkill),
+            width: double.infinity,
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF8F7FF),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: DisminiBioScreen.lavender,
+              ),
+            ),
+            child: selectedSkill == null
+                ? const Text(
+                    'Tap on any skill above to see its description.',
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 13,
+                    ),
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        selectedSkill!,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: DisminiBioScreen.navy,
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      Text(
+                        skillDescriptions[selectedSkill]!,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          height: 1.5,
+                          color: DisminiBioScreen.navy,
+                        ),
+                      ),
+                    ],
+                  ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// --------------------------------------------------
 // EDUCATION ITEM
+// --------------------------------------------------
+
+class educationItem extends StatelessWidget {
 class EducationItem extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -330,7 +490,6 @@ class EducationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 18),
-
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -366,6 +525,11 @@ class EducationItem extends StatelessWidget {
   }
 }
 
+// --------------------------------------------------
+// SOFT SKILL ITEM
+// --------------------------------------------------
+
+class softSkillItem extends StatelessWidget {
 // SKILL CHIP
 class SkillChip extends StatelessWidget {
   final String title;
@@ -405,7 +569,6 @@ class SoftSkillItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
-
       child: Row(
         children: [
           Icon(icon, color: DisminiBioScreen.navy),
@@ -422,7 +585,11 @@ class SoftSkillItem extends StatelessWidget {
   }
 }
 
+// --------------------------------------------------
 // INTEREST ITEM
+// --------------------------------------------------
+
+class interestItem extends StatelessWidget {
 class InterestItem extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -433,7 +600,6 @@ class InterestItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
-
       child: Row(
         children: [
           Icon(icon, color: DisminiBioScreen.navy),
