@@ -49,8 +49,6 @@ class DisminiBioScreen extends StatelessWidget {
                     child: const CircleAvatar(
                       radius: 65,
                       backgroundColor: Colors.white,
-                      backgroundImage:
-                          AssetImage('assets/images/dismini.png'),
                       backgroundImage: AssetImage('assets/images/dismini.png'),
                     ),
                   ),
@@ -98,11 +96,6 @@ class DisminiBioScreen extends StatelessWidget {
                       'University of Moratuwa. I am passionate about UI/UX design '
                       'and software development. I enjoy creating simple, attractive '
                       'and user-friendly digital experiences.',
-                      style: TextStyle(
-                        fontSize: 14,
-                        height: 1.7,
-                        color: navy,
-                      ),
                       style: TextStyle(fontSize: 14, height: 1.7, color: navy),
                     ),
                   ),
@@ -147,25 +140,7 @@ class DisminiBioScreen extends StatelessWidget {
                   // TECHNICAL SKILLS
                   sectionTitle('Technical Skills', Icons.code),
 
-                  infoCard(
-                    child: const InteractiveSkills(),
-                    child: Wrap(
-                      spacing: 8,
-                      runSpacing: 10,
-                      children: const [
-                        SkillChip('HTML'),
-                        SkillChip('CSS'),
-                        SkillChip('JavaScript'),
-                        SkillChip('React.js'),
-                        SkillChip('Bootstrap'),
-                        SkillChip('MySQL'),
-                        SkillChip('Java'),
-                        SkillChip('Figma'),
-                        SkillChip('Git & GitHub'),
-                        SkillChip('Flutter & Dart'),
-                      ],
-                    ),
-                  ),
+                  infoCard(child: const InteractiveSkills()),
 
                   const SizedBox(height: 25),
 
@@ -208,10 +183,6 @@ class DisminiBioScreen extends StatelessWidget {
                         InterestItem(
                           Icons.music_note,
                           'Playing Musical Instruments',
-                        ),
-                        interestItem(
-                          Icons.movie,
-                          'Watching Movies',
                         ),
                         InterestItem(Icons.movie, 'Watching Movies'),
                       ],
@@ -287,11 +258,6 @@ class DisminiBioScreen extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: navy,
-            size: 23,
-          ),
           Icon(icon, color: navy, size: 23),
 
           const SizedBox(width: 10),
@@ -339,12 +305,10 @@ class InteractiveSkills extends StatefulWidget {
   const InteractiveSkills({super.key});
 
   @override
-  State<InteractiveSkills> createState() =>
-      _InteractiveSkillsState();
+  State<InteractiveSkills> createState() => _InteractiveSkillsState();
 }
 
 class _InteractiveSkillsState extends State<InteractiveSkills> {
-
   String? selectedSkill;
 
   static const Map<String, String> skillDescriptions = {
@@ -358,11 +322,9 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
     'React.js':
         'Used to build interactive and reusable user interface components.',
 
-    'Bootstrap':
-        'Used to create responsive and mobile-friendly web layouts.',
+    'Bootstrap': 'Used to create responsive and mobile-friendly web layouts.',
 
-    'MySQL':
-        'Used to store, organize and manage data in relational databases.',
+    'MySQL': 'Used to store, organize and manage data in relational databases.',
 
     'Java':
         'A programming language used to develop object-oriented applications.',
@@ -373,8 +335,7 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
     'Git & GitHub':
         'Used to manage code versions and collaborate on software projects.',
 
-    'Flutter & Dart':
-        'Used to develop cross-platform mobile applications.',
+    'Flutter & Dart': 'Used to develop cross-platform mobile applications.',
   };
 
   @override
@@ -384,10 +345,7 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
       children: [
         const Text(
           'Select a skill to learn more:',
-          style: TextStyle(
-            color: DisminiBioScreen.navy,
-            fontSize: 13,
-          ),
+          style: TextStyle(color: DisminiBioScreen.navy, fontSize: 13),
         ),
 
         const SizedBox(height: 15),
@@ -406,9 +364,7 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
               backgroundColor: const Color(0xFFEDE9FE),
               labelStyle: TextStyle(
                 color: DisminiBioScreen.navy,
-                fontWeight: isSelected
-                    ? FontWeight.bold
-                    : FontWeight.w600,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
                 fontSize: 12,
               ),
               onSelected: (selected) {
@@ -432,17 +388,12 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
             decoration: BoxDecoration(
               color: const Color(0xFFF8F7FF),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: DisminiBioScreen.lavender,
-              ),
+              border: Border.all(color: DisminiBioScreen.lavender),
             ),
             child: selectedSkill == null
                 ? const Text(
                     'Tap on any skill above to see its description.',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 13,
-                    ),
+                    style: TextStyle(color: Colors.black54, fontSize: 13),
                   )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -479,7 +430,6 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
 // EDUCATION ITEM
 // --------------------------------------------------
 
-class educationItem extends StatelessWidget {
 class EducationItem extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -529,7 +479,6 @@ class EducationItem extends StatelessWidget {
 // SOFT SKILL ITEM
 // --------------------------------------------------
 
-class softSkillItem extends StatelessWidget {
 // SKILL CHIP
 class SkillChip extends StatelessWidget {
   final String title;
@@ -589,7 +538,6 @@ class SoftSkillItem extends StatelessWidget {
 // INTEREST ITEM
 // --------------------------------------------------
 
-class interestItem extends StatelessWidget {
 class InterestItem extends StatelessWidget {
   final IconData icon;
   final String title;
