@@ -160,11 +160,11 @@ class NexoraMembers {
       id: 3,
       fullName: 'M. Dismini Mihirandani',
       shortName: 'Dismini',
-      role: 'Software Engineer & QA Enthusiast',
-      bio: 'Committed to building clean, maintainable software systems and reliable automated test suites with high code quality standards.',
+      role: 'Software Engineer & UI/UX Enthusiast',
+      bio:'Passionate about software development and UI/UX design, with an interest in creating attractive and user-friendly digital experiences.',
       email: 'dismini.m@nexora.dev',
       address: 'Bandaranayake Mawatha, Kurunegala, Sri Lanka',
-      phone: '+94 76 543 2198',
+      phone: '+94 701829592',
       qualifications: [
         QualificationItem(
           title: 'National Diploma in Technology (NDT) in IT',
@@ -209,7 +209,7 @@ class NexoraMembers {
         'Dart', 'Java', 'C++', 'SQL', 'Git',
         'Selenium', 'Postman', 'Flutter', 'Firebase'
       ],
-      avatarUrl: 'assets/images/dismini.jpg',
+      avatarUrl: 'assets/images/dismini.png',
     ),
     MemberData(
       id: 4,

@@ -6,7 +6,6 @@ class DisminiBioScreen extends StatelessWidget {
   static const Color navy = Color(0xFF172554);
   static const Color lavender = Color(0xFFC4B5FD);
   static const Color background = Color(0xFFF8F7FF);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +32,7 @@ class DisminiBioScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(
-                vertical: 35,
+                vertical: 25,
                 horizontal: 20,
               ),
               decoration: const BoxDecoration(
@@ -56,13 +55,9 @@ class DisminiBioScreen extends StatelessWidget {
                     ),
 
                     child: const CircleAvatar(
-                      radius: 65,
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.person,
-                        size: 75,
-                        color: navy,
-                      ),
+                        radius: 65,
+                        backgroundColor: Colors.white,
+                        backgroundImage: AssetImage('assets/images/dismini.png'),
                     ),
                   ),
 
@@ -113,13 +108,10 @@ class DisminiBioScreen extends StatelessWidget {
 
                   infoCard(
                     child: const Text(
-                      'I am a motivated and enthusiastic Information '
-                      'Technology undergraduate at the Institute of '
-                      'Technology, University of Moratuwa (ITUM). '
-                      'I am passionate about software development, '
-                      'web technologies and UI/UX design. I enjoy '
-                      'learning new technologies and creating '
-                      'user-friendly digital experiences.',
+                      'I am an IT undergraduate at the Institute of Technology, '
+                        'University of Moratuwa. I am passionate about UI/UX design '
+                        'and software development. I enjoy creating simple, attractive '
+                        'and user-friendly digital experiences.',
                       style: TextStyle(
                         fontSize: 14,
                         height: 1.7,
@@ -145,19 +137,19 @@ class DisminiBioScreen extends StatelessWidget {
                         ),
                         educationItem(
                           'Diploma in Information Technology',
-                          'Information Technology',
+                          'Esoft Metro Campus',
                         ),
                         educationItem(
                           'Diploma in English',
-                          'English Language',
+                          'Esoft Metro Campus',
                         ),
                         educationItem(
                           'G.C.E. Advanced Level',
-                          'Advanced Level Qualification',
+                          'Vihara Mahadevi Girl,s School, Kandy',
                         ),
                         educationItem(
                           'G.C.E. Ordinary Level',
-                          'Ordinary Level Qualification',
+                          'Vihara Mahadevi Girl,s School, Kandy',
                         ),
                       ],
                     ),
@@ -252,6 +244,14 @@ class DisminiBioScreen extends StatelessWidget {
                           Icons.computer,
                           'Learning New Technologies',
                         ),
+                        interestItem(
+                          Icons.music_note,
+                         'Playing Musical Instruments',
+                        ),
+                        interestItem(
+                          Icons.movie,
+                          'Watching Movies',
+                        ),  
                       ],
                     ),
                   ),
@@ -292,11 +292,11 @@ class DisminiBioScreen extends StatelessWidget {
                       children: const [
                         interestItem(
                           Icons.location_on_outlined,
-                          'Sri Lanka',
+                          'Kandy, Sri Lanka',
                         ),
                         interestItem(
                           Icons.email_outlined,
-                          'Add your email address',
+                          'mihirandanimahalekam@gmail.com',
                         ),
                       ],
                     ),

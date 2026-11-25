@@ -5,7 +5,7 @@ import '../../core/widgets/member_photo.dart';
 
 
 import '../members/dilki/dilki_bio_screen.dart' as dilki;
-// import '../members/dismini/dismini_bio_screen.dart' as dismini;
+import '../members/dismini/dismini_bio_screen.dart' as dismini;
 // import '../members/imal/imal_bio_screen.dart' as imal;
 import '../members/mahroos/mahroos_bio_screen.dart' as mahroos;
 // import '../members/naduni/naduni_bio_screen.dart' as naduni;
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 2:
         return const dilki.DilkiBioScreen();
       case 3:
-      //   return const dismini.DisminiBioScreen();
+        return const dismini.DisminiBioScreen();
       case 4:
       //   return const imal.ImalBioScreen();
       case 5:
