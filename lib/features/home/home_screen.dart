@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 4:
       //   return const imal.ImalBioScreen();
       case 5:
-      //   return const naduni.NaduniBioScreen();
+        return const naduni.NaduniBioScreen();
       case 6:
       //   return const nimthaka.NimthakaBioScreen();
       case 7:
