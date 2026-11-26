@@ -8,7 +8,7 @@ import '../members/dismini/dismini_bio_screen.dart' as dismini;
 import '../members/imal/imal_bio_screen.dart' as imal;
 import '../members/mahroos/mahroos_bio_screen.dart' as mahroos;
 import '../members/naduni/naduni_bio_screen.dart' as naduni;
-// import '../members/nimthaka/nimthaka_bio_screen.dart' as nimthaka;
+import '../members/nimthaka/nimthaka_bio_screen.dart' as nimthaka;
 import '../members/pamodya/pamodya_bio_screen.dart' as pamodya;
 import '../members/rukshan/rukshan_bio_screen.dart' as rukshan;
 import '../members/sandaru/sandaru_bio_screen.dart' as sandaru;
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 5:
         return const naduni.NaduniBioScreen();
       case 6:
-      //   return const nimthaka.NimthakaBioScreen();
+        return const nimthaka.NimthakaBioScreen();
       case 7:
         return const pamodya.PamodyaBioScreen();
       case 8:
