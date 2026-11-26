@@ -3,12 +3,11 @@ import '../../core/models/member_model.dart';
 import '../../core/state/favorites_manager.dart';
 import '../../core/widgets/member_photo.dart';
 
-
 import '../members/dilki/dilki_bio_screen.dart' as dilki;
 import '../members/dismini/dismini_bio_screen.dart' as dismini;
 // import '../members/imal/imal_bio_screen.dart' as imal;
 import '../members/mahroos/mahroos_bio_screen.dart' as mahroos;
-// import '../members/naduni/naduni_bio_screen.dart' as naduni;
+import '../members/naduni/naduni_bio_screen.dart' as naduni;
 // import '../members/nimthaka/nimthaka_bio_screen.dart' as nimthaka;
 import '../members/pamodya/pamodya_bio_screen.dart' as pamodya;
 import '../members/rukshan/rukshan_bio_screen.dart' as rukshan;
@@ -17,10 +16,7 @@ import '../members/rukshan/rukshan_bio_screen.dart' as rukshan;
 class HomeScreen extends StatefulWidget {
   final VoidCallback? onLogout;
 
-  const HomeScreen({
-    super.key,
-    this.onLogout,
-  });
+  const HomeScreen({super.key, this.onLogout});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -53,7 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Icon(Icons.logout_rounded, color: Color(0xFFEF4444)),
             SizedBox(width: 10),
-            Text('Confirm Sign Out', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            Text(
+              'Confirm Sign Out',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
           ],
         ),
         content: const Text(
@@ -63,7 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel', style: TextStyle(color: Color(0xFF64748B))),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: Color(0xFF64748B)),
+            ),
           ),
           ElevatedButton(
             onPressed: () {
@@ -75,7 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFEF4444),
               foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
             child: const Text('Sign Out'),
           ),
@@ -95,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 4:
       //   return const imal.ImalBioScreen();
       case 5:
-      //   return const naduni.NaduniBioScreen();
+        return const naduni.NaduniBioScreen();
       case 6:
       //   return const nimthaka.NimthakaBioScreen();
       case 7:
@@ -103,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 8:
         return const rukshan.RukshanBioScreen();
       case 9:
-        // return const sandaru.SandaruBioScreen();
+      // return const sandaru.SandaruBioScreen();
       default:
         return const mahroos.MahroosBioScreen();
     }
@@ -115,9 +119,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // Filter members based on search and category
     final filteredMembers = allMembers.where((m) {
-      final matchesSearch = m.fullName.toLowerCase().contains(_searchQuery.toLowerCase()) ||
+      final matchesSearch =
+          m.fullName.toLowerCase().contains(_searchQuery.toLowerCase()) ||
           m.role.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-          m.technicalSkills.any((s) => s.toLowerCase().contains(_searchQuery.toLowerCase()));
+          m.technicalSkills.any(
+            (s) => s.toLowerCase().contains(_searchQuery.toLowerCase()),
+          );
 
       if (!matchesSearch) return false;
 
@@ -145,7 +152,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: brandIndigo,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(Icons.hub_rounded, size: 18, color: Colors.white),
+              child: const Icon(
+                Icons.hub_rounded,
+                size: 18,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(width: 10),
             const Text(
@@ -161,8 +172,12 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           // Toggle View Mode
           IconButton(
-            icon: Icon(_isGridView ? Icons.view_list_rounded : Icons.grid_view_rounded),
-            tooltip: _isGridView ? 'Switch to List View' : 'Switch to Grid View',
+            icon: Icon(
+              _isGridView ? Icons.view_list_rounded : Icons.grid_view_rounded,
+            ),
+            tooltip: _isGridView
+                ? 'Switch to List View'
+                : 'Switch to Grid View',
             onPressed: () {
               setState(() => _isGridView = !_isGridView);
             },
@@ -201,19 +216,33 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 4),
                         const Text(
                           'Nine distinct profiles. One unified team.',
-                          style: TextStyle(fontSize: 13, color: Color(0xFF94A3B8)),
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFF94A3B8),
+                          ),
                         ),
                         const SizedBox(height: 18),
 
                         // Search Bar
                         TextField(
                           controller: _searchController,
-                          onChanged: (val) => setState(() => _searchQuery = val),
-                          style: const TextStyle(color: brandNavy, fontSize: 14),
+                          onChanged: (val) =>
+                              setState(() => _searchQuery = val),
+                          style: const TextStyle(
+                            color: brandNavy,
+                            fontSize: 14,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Search by member name, role or skill...',
-                            hintStyle: const TextStyle(color: Color(0xFF94A3B8), fontSize: 13),
-                            prefixIcon: const Icon(Icons.search, color: brandIndigo, size: 20),
+                            hintStyle: const TextStyle(
+                              color: Color(0xFF94A3B8),
+                              fontSize: 13,
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.search,
+                              color: brandIndigo,
+                              size: 20,
+                            ),
                             suffixIcon: _searchQuery.isNotEmpty
                                 ? IconButton(
                                     icon: const Icon(Icons.close, size: 18),
@@ -225,7 +254,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 : null,
                             filled: true,
                             fillColor: Colors.white,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 12,
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
                               borderSide: BorderSide.none,
@@ -245,9 +277,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       children: [
                         _buildFilterChip('All', 'All (${allMembers.length})'),
-                        _buildFilterChip('Tech & Systems', 'Tech & Systems (5)'),
+                        _buildFilterChip(
+                          'Tech & Systems',
+                          'Tech & Systems (5)',
+                        ),
                         _buildFilterChip('Design & QA', 'Design & QA (4)'),
-                        _buildFilterChip('Favorites', 'Favorited (${allMembers.where((m) => _favManager.isFavorite(m.id)).length})'),
+                        _buildFilterChip(
+                          'Favorites',
+                          'Favorited (${allMembers.where((m) => _favManager.isFavorite(m.id)).length})',
+                        ),
                       ],
                     ),
                   ),
@@ -256,7 +294,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 // Section Title Row
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 8,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -270,7 +311,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Text(
                           _isGridView ? 'Grid View' : 'List View',
-                          style: const TextStyle(fontSize: 12, color: Color(0xFF94A3B8)),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF94A3B8),
+                          ),
                         ),
                       ],
                     ),
@@ -285,9 +329,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.search_off_rounded, size: 54, color: Color(0xFFCBD5E1)),
+                          Icon(
+                            Icons.search_off_rounded,
+                            size: 54,
+                            color: Color(0xFFCBD5E1),
+                          ),
                           SizedBox(height: 12),
-                          Text('No team members found matching your search.', style: TextStyle(color: Color(0xFF64748B))),
+                          Text(
+                            'No team members found matching your search.',
+                            style: TextStyle(color: Color(0xFF64748B)),
+                          ),
                         ],
                       ),
                     ),
@@ -300,23 +351,26 @@ class _HomeScreenState extends State<HomeScreen> {
                         final crossAxisCount = constraints.crossAxisExtent > 750
                             ? 3
                             : constraints.crossAxisExtent > 500
-                                ? 2
-                                : 1;
+                            ? 2
+                            : 1;
 
                         return SliverGrid(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: crossAxisCount,
-                            crossAxisSpacing: 14,
-                            mainAxisSpacing: 14,
-                            childAspectRatio: crossAxisCount == 1 ? 1.6 : 0.88,
-                          ),
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              final member = filteredMembers[index];
-                              return _buildGridCard(member);
-                            },
-                            childCount: filteredMembers.length,
-                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: crossAxisCount,
+                                crossAxisSpacing: 14,
+                                mainAxisSpacing: 14,
+                                childAspectRatio: crossAxisCount == 1
+                                    ? 1.6
+                                    : 0.88,
+                              ),
+                          delegate: SliverChildBuilderDelegate((
+                            context,
+                            index,
+                          ) {
+                            final member = filteredMembers[index];
+                            return _buildGridCard(member);
+                          }, childCount: filteredMembers.length),
                         );
                       },
                     ),
@@ -325,13 +379,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   SliverPadding(
                     padding: const EdgeInsets.fromLTRB(18, 6, 18, 30),
                     sliver: SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          final member = filteredMembers[index];
-                          return _buildListTileCard(member);
-                        },
-                        childCount: filteredMembers.length,
-                      ),
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        final member = filteredMembers[index];
+                        return _buildListTileCard(member);
+                      }, childCount: filteredMembers.length),
                     ),
                   ),
               ],
@@ -402,7 +453,10 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 3,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFFEEF2FF),
                     borderRadius: BorderRadius.circular(8),
@@ -422,7 +476,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icon(
                     isFav ? Icons.favorite : Icons.favorite_border,
                     size: 20,
-                    color: isFav ? const Color(0xFFEF4444) : const Color(0xFF94A3B8),
+                    color: isFav
+                        ? const Color(0xFFEF4444)
+                        : const Color(0xFF94A3B8),
                   ),
                   onPressed: () => _favManager.toggleFavorite(member.id),
                 ),
@@ -432,13 +488,13 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 8),
 
             // Portrait Avatar
-           MemberPhoto(
-  name: member.fullName,
-  imagePath: member.avatarUrl,
-  size: 80,
-  borderWidth: 2,
-  borderColor: brandIndigo.withValues(alpha: 0.2),
-),
+            MemberPhoto(
+              name: member.fullName,
+              imagePath: member.avatarUrl,
+              size: 80,
+              borderWidth: 2,
+              borderColor: brandIndigo.withValues(alpha: 0.2),
+            ),
 
             const SizedBox(height: 12),
 
@@ -493,7 +549,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(width: 4),
-                  Icon(Icons.arrow_forward_rounded, size: 14, color: brandIndigo),
+                  Icon(
+                    Icons.arrow_forward_rounded,
+                    size: 14,
+                    color: brandIndigo,
+                  ),
                 ],
               ),
             ),
@@ -522,32 +582,46 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
         leading: MemberPhoto(
-  name: member.fullName,
-  imagePath: member.avatarUrl,
-  size: 54,
-  borderWidth: 2,
-  borderColor: brandIndigo.withValues(alpha: 0.2),
-),
+          name: member.fullName,
+          imagePath: member.avatarUrl,
+          size: 54,
+          borderWidth: 2,
+          borderColor: brandIndigo.withValues(alpha: 0.2),
+        ),
         title: Text(
           member.fullName,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: brandNavy),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+            color: brandNavy,
+          ),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 2),
-            Text(member.role, style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
+            Text(
+              member.role,
+              style: const TextStyle(fontSize: 12, color: Color(0xFF64748B)),
+            ),
             const SizedBox(height: 4),
             Row(
               children: [
-                const Icon(Icons.place_outlined, size: 12, color: Color(0xFF94A3B8)),
+                const Icon(
+                  Icons.place_outlined,
+                  size: 12,
+                  color: Color(0xFF94A3B8),
+                ),
                 const SizedBox(width: 4),
                 Expanded(
                   child: Text(
                     member.address,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 11, color: Color(0xFF94A3B8)),
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: Color(0xFF94A3B8),
+                    ),
                   ),
                 ),
               ],
@@ -560,7 +634,9 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(
               icon: Icon(
                 isFav ? Icons.favorite : Icons.favorite_border,
-                color: isFav ? const Color(0xFFEF4444) : const Color(0xFFCBD5E1),
+                color: isFav
+                    ? const Color(0xFFEF4444)
+                    : const Color(0xFFCBD5E1),
                 size: 20,
               ),
               onPressed: () => _favManager.toggleFavorite(member.id),
