@@ -11,8 +11,7 @@ import '../members/naduni/naduni_bio_screen.dart' as naduni;
 // import '../members/nimthaka/nimthaka_bio_screen.dart' as nimthaka;
 import '../members/pamodya/pamodya_bio_screen.dart' as pamodya;
 import '../members/rukshan/rukshan_bio_screen.dart' as rukshan;
-
-// import '../members/sandaru/sandaru_bio_screen.dart' as sandaru;
+import '../members/sandaru/sandaru_bio_screen.dart' as sandaru;
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback? onLogout;
@@ -108,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 8:
         return const rukshan.RukshanBioScreen();
       case 9:
-      // return const sandaru.SandaruBioScreen();
+        return const sandaru.BuddhikaBioScreen();
       default:
         return const mahroos.MahroosBioScreen();
     }

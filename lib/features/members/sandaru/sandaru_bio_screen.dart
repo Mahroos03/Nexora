@@ -1243,3 +1243,7 @@ class _ProjectCard extends StatelessWidget {
     );
   }
 }
+
+class SandaruBioScreen {
+  const SandaruBioScreen();
+}
