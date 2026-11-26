@@ -21,7 +21,6 @@ class DisminiBioScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -36,7 +35,6 @@ class DisminiBioScreen extends StatelessWidget {
                   bottomRight: Radius.circular(35),
                 ),
               ),
-
               child: Column(
                 children: [
                   // PROFILE PHOTO
@@ -109,8 +107,8 @@ class DisminiBioScreen extends StatelessWidget {
                   ),
 
                   infoCard(
-                    child: Column(
-                      children: const [
+                    child: const Column(
+                      children: [
                         EducationItem(
                           'IT Undergraduate',
                           'Institute of Technology, University of Moratuwa',
@@ -125,11 +123,11 @@ class DisminiBioScreen extends StatelessWidget {
                         ),
                         EducationItem(
                           'G.C.E. Advanced Level',
-                          'Vihara Mahadevi Girl,s School, Kandy',
+                          'Vihara Mahadevi Girl\'s School, Kandy',
                         ),
                         EducationItem(
                           'G.C.E. Ordinary Level',
-                          'Vihara Mahadevi Girl,s School, Kandy',
+                          'Vihara Mahadevi Girl\'s School, Kandy',
                         ),
                       ],
                     ),
@@ -140,7 +138,12 @@ class DisminiBioScreen extends StatelessWidget {
                   // TECHNICAL SKILLS
                   sectionTitle('Technical Skills', Icons.code),
 
+
                   infoCard(child: const InteractiveSkills()),
+                  infoCard(
+                    child: const InteractiveSkills(),
+                  ),
+
 
                   const SizedBox(height: 25),
 
@@ -148,8 +151,8 @@ class DisminiBioScreen extends StatelessWidget {
                   sectionTitle('Soft Skills', Icons.star_outline),
 
                   infoCard(
-                    child: Column(
-                      children: const [
+                    child: const Column(
+                      children: [
                         SoftSkillItem(Icons.forum_outlined, 'Communication'),
                         SoftSkillItem(Icons.groups_outlined, 'Teamwork'),
                         SoftSkillItem(Icons.access_time, 'Time Management'),
@@ -168,8 +171,8 @@ class DisminiBioScreen extends StatelessWidget {
                   sectionTitle('Interests & Hobbies', Icons.favorite_outline),
 
                   infoCard(
-                    child: Column(
-                      children: const [
+                    child: const Column(
+                      children: [
                         InterestItem(Icons.design_services, 'UI/UX Designing'),
                         InterestItem(Icons.web, 'Web Development'),
                         InterestItem(
@@ -214,8 +217,8 @@ class DisminiBioScreen extends StatelessWidget {
                   ),
 
                   infoCard(
-                    child: Column(
-                      children: const [
+                    child: const Column(
+                      children: [
                         InterestItem(
                           Icons.location_on_outlined,
                           'Kandy, Sri Lanka',
@@ -259,7 +262,6 @@ class DisminiBioScreen extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, color: navy, size: 23),
-
           const SizedBox(width: 10),
           Text(
             title,
@@ -296,6 +298,11 @@ class DisminiBioScreen extends StatelessWidget {
   }
 }
 
+
+class HEAD {
+}
+
+
 // --------------------------------------------------
 // INTERACTIVE TECHNICAL SKILLS
 // State Management: setState()
@@ -313,14 +320,12 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
 
   static const Map<String, String> skillDescriptions = {
     'HTML': 'Used to structure content and elements on web pages.',
-
     'CSS': 'Used to style web pages and create attractive layouts.',
-
     'JavaScript':
         'Used to add interactive features and dynamic behaviour to websites.',
-
     'React.js':
         'Used to build interactive and reusable user interface components.',
+
 
     'Bootstrap': 'Used to create responsive and mobile-friendly web layouts.',
 
@@ -328,14 +333,13 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
 
     'Java':
         'A programming language used to develop object-oriented applications.',
-
     'Figma':
         'Used to create wireframes, prototypes and user interface designs.',
-
     'Git & GitHub':
         'Used to manage code versions and collaborate on software projects.',
 
     'Flutter & Dart': 'Used to develop cross-platform mobile applications.',
+
   };
 
   @override
@@ -406,9 +410,7 @@ class _InteractiveSkillsState extends State<InteractiveSkills> {
                           color: DisminiBioScreen.navy,
                         ),
                       ),
-
                       const SizedBox(height: 8),
-
                       Text(
                         skillDescriptions[selectedSkill]!,
                         style: const TextStyle(
@@ -444,9 +446,7 @@ class EducationItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Icon(Icons.school, color: DisminiBioScreen.lavender),
-
           const SizedBox(width: 12),
-
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -459,9 +459,7 @@ class EducationItem extends StatelessWidget {
                     fontSize: 14,
                   ),
                 ),
-
                 const SizedBox(height: 4),
-
                 Text(
                   subtitle,
                   style: const TextStyle(color: Colors.black54, fontSize: 12),
@@ -476,10 +474,9 @@ class EducationItem extends StatelessWidget {
 }
 
 // --------------------------------------------------
-// SOFT SKILL ITEM
+// SKILL CHIP
 // --------------------------------------------------
 
-// SKILL CHIP
 class SkillChip extends StatelessWidget {
   final String title;
 
@@ -489,12 +486,10 @@ class SkillChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
-
       decoration: BoxDecoration(
         color: const Color(0xFFEDE9FE),
         borderRadius: BorderRadius.circular(20),
       ),
-
       child: Text(
         title,
         style: const TextStyle(
@@ -507,7 +502,10 @@ class SkillChip extends StatelessWidget {
   }
 }
 
+// --------------------------------------------------
 // SOFT SKILL ITEM
+// --------------------------------------------------
+
 class SoftSkillItem extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -521,9 +519,7 @@ class SoftSkillItem extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, color: DisminiBioScreen.navy),
-
           const SizedBox(width: 12),
-
           Text(
             title,
             style: const TextStyle(fontSize: 14, color: DisminiBioScreen.navy),
@@ -551,9 +547,7 @@ class InterestItem extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, color: DisminiBioScreen.navy),
-
           const SizedBox(width: 12),
-
           Expanded(
             child: Text(
               title,
