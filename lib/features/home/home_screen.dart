@@ -8,7 +8,7 @@ import '../members/dilki/dilki_bio_screen.dart' as dilki;
 import '../members/dismini/dismini_bio_screen.dart' as dismini;
 // import '../members/imal/imal_bio_screen.dart' as imal;
 import '../members/mahroos/mahroos_bio_screen.dart' as mahroos;
-// import '../members/naduni/naduni_bio_screen.dart' as naduni;
+import '../members/naduni/naduni_bio_screen.dart' as naduni;
 // import '../members/nimthaka/nimthaka_bio_screen.dart' as nimthaka;
 import '../members/pamodya/pamodya_bio_screen.dart' as pamodya;
 import '../members/rukshan/rukshan_bio_screen.dart' as rukshan;
