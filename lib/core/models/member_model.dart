@@ -51,7 +51,8 @@ class NexoraMembers {
       fullName: 'Mohamed Mahroos',
       shortName: 'Mahroos',
       role: 'Full Stack & Mobile Developer',
-      bio: 'Enthusiastic IT undergraduate with a passion for architecting resilient cross-platform apps, cloud infrastructure, and distributed systems.',
+      bio:
+          'Enthusiastic IT undergraduate with a passion for architecting resilient cross-platform apps, cloud infrastructure, and distributed systems.',
       email: 'mahroos@nexora.dev',
       address: 'Main Street, Erukkalampitty, Mannar, Sri Lanka',
       phone: '+94 77 123 4561',
@@ -60,13 +61,15 @@ class NexoraMembers {
           title: 'National Diploma in Technology (NDT) in IT',
           institution: 'Institute of Technology, University of Moratuwa',
           year: '2023 - Present',
-          details: 'Specializing in Software Systems, Networking & Cloud Platforms.',
+          details:
+              'Specializing in Software Systems, Networking & Cloud Platforms.',
         ),
         QualificationItem(
           title: 'G.C.E. Advanced Level (Physical Science)',
           institution: 'P/Erukkalampitty M.M.V.',
           year: '2022',
-          details: 'Combined Maths, Physics, Chemistry with District Distinction.',
+          details:
+              'Combined Maths, Physics, Chemistry with District Distinction.',
         ),
         QualificationItem(
           title: 'G.C.E. Ordinary Level',
@@ -96,8 +99,15 @@ class NexoraMembers {
         'Cybersecurity & Capture-the-Flag',
       ],
       technicalSkills: [
-        'Flutter', 'Dart', 'Java', 'Spring Boot', 'React',
-        'Firebase', 'PostgreSQL', 'Docker', 'Git'
+        'Flutter',
+        'Dart',
+        'Java',
+        'Spring Boot',
+        'React',
+        'Firebase',
+        'PostgreSQL',
+        'Docker',
+        'Git',
       ],
       avatarUrl: 'assets/images/mahroos.jpg',
     ),
@@ -106,7 +116,8 @@ class NexoraMembers {
       fullName: 'Dilki Nanayakkara',
       shortName: 'Dilki',
       role: 'UI/UX Specialist & Frontend Developer',
-      bio: 'Detail-oriented designer and front-end engineer crafting delightful, accessible user journeys and micro-interactions.',
+      bio:
+          'Detail-oriented designer and front-end engineer crafting delightful, accessible user journeys and micro-interactions.',
       email: 'dilki.n@nexora.dev',
       address: 'Galle Road, Kalutara North, Sri Lanka',
       phone: '+94 71 890 1234',
@@ -115,13 +126,15 @@ class NexoraMembers {
           title: 'National Diploma in Technology (NDT) in IT',
           institution: 'Institute of Technology, University of Moratuwa',
           year: '2023 - Present',
-          details: 'Focus on Human-Computer Interaction, UI Design & Mobile Development.',
+          details:
+              'Focus on Human-Computer Interaction, UI Design & Mobile Development.',
         ),
         QualificationItem(
           title: 'G.C.E. Advanced Level (Bio Science)',
           institution: 'Kalutara Balika Vidyalaya',
           year: '2022',
-          details: 'Biology, Chemistry, Physics with excellent academic standing.',
+          details:
+              'Biology, Chemistry, Physics with excellent academic standing.',
         ),
         QualificationItem(
           title: 'G.C.E. Ordinary Level',
@@ -133,7 +146,8 @@ class NexoraMembers {
           title: 'Google UX Design Professional Certificate',
           institution: 'Coursera / Google Career Certificates',
           year: '2024',
-          details: 'User Research, Wireframing, Figma Prototypes & Design Systems.',
+          details:
+              'User Research, Wireframing, Figma Prototypes & Design Systems.',
         ),
       ],
       softSkills: [
@@ -151,8 +165,13 @@ class NexoraMembers {
         'Photography & Visual Styling',
       ],
       technicalSkills: [
-        'Figma', 'Flutter UI', 'Adobe XD', 'HTML5/CSS3',
-        'Tailwind', 'Design Systems', 'Micro-animations'
+        'Figma',
+        'Flutter UI',
+        'Adobe XD',
+        'HTML5/CSS3',
+        'Tailwind',
+        'Design Systems',
+        'Micro-animations',
       ],
       avatarUrl: 'assets/images/dilki.jpg',
     ),
@@ -161,7 +180,8 @@ class NexoraMembers {
       fullName: 'M. Dismini Mihirandani',
       shortName: 'Dismini',
       role: 'Software Engineer & UI/UX Enthusiast',
-      bio:'Passionate about software development and UI/UX design, with an interest in creating attractive and user-friendly digital experiences.',
+      bio:
+          'Passionate about software development and UI/UX design, with an interest in creating attractive and user-friendly digital experiences.',
       email: 'dismini.m@nexora.dev',
       address: 'Bandaranayake Mawatha, Kurunegala, Sri Lanka',
       phone: '+94 701829592',
@@ -170,7 +190,8 @@ class NexoraMembers {
           title: 'National Diploma in Technology (NDT) in IT',
           institution: 'Institute of Technology, University of Moratuwa',
           year: '2023 - Present',
-          details: 'Specializing in Enterprise Systems, Database Management & QA.',
+          details:
+              'Specializing in Enterprise Systems, Database Management & QA.',
         ),
         QualificationItem(
           title: 'G.C.E. Advanced Level (Physical Science)',
@@ -188,7 +209,8 @@ class NexoraMembers {
           title: 'Certificate in Automated Software Testing',
           institution: 'SLIIT Professional Academy',
           year: '2024',
-          details: 'Selenium, JUnit, Test Automation & CI/CD Pipeline Integration.',
+          details:
+              'Selenium, JUnit, Test Automation & CI/CD Pipeline Integration.',
         ),
       ],
       softSkills: [
@@ -206,8 +228,15 @@ class NexoraMembers {
         'Public Speaking & Debating',
       ],
       technicalSkills: [
-        'Dart', 'Java', 'C++', 'SQL', 'Git',
-        'Selenium', 'Postman', 'Flutter', 'Firebase'
+        'Dart',
+        'Java',
+        'C++',
+        'SQL',
+        'Git',
+        'Selenium',
+        'Postman',
+        'Flutter',
+        'Firebase',
       ],
       avatarUrl: 'assets/images/dismini.png',
     ),
@@ -216,7 +245,8 @@ class NexoraMembers {
       fullName: 'Imal Lakshitha',
       shortName: 'Imal',
       role: 'Backend Architect & Database Engineer',
-      bio: 'Enthusiastic backend engineer dedicated to high-throughput data processing, relational databases, and serverless architectures.',
+      bio:
+          'Enthusiastic backend engineer dedicated to high-throughput data processing, relational databases, and serverless architectures.',
       email: 'imal.lakshitha@nexora.dev',
       address: 'Hospital Road, Matara, Sri Lanka',
       phone: '+94 77 345 6789',
@@ -237,7 +267,8 @@ class NexoraMembers {
           title: 'G.C.E. Ordinary Level',
           institution: 'Rahula College, Matara',
           year: '2019',
-          details: 'Distinction in all core science and technical subjects (9 As).',
+          details:
+              'Distinction in all core science and technical subjects (9 As).',
         ),
         QualificationItem(
           title: 'AWS Certified Cloud Practitioner',
@@ -260,8 +291,14 @@ class NexoraMembers {
         'Gaming & Esports Coordination',
       ],
       technicalSkills: [
-        'Node.js', 'Python', 'Go', 'PostgreSQL',
-        'Redis', 'REST APIs', 'Docker', 'Linux/Bash'
+        'Node.js',
+        'Python',
+        'Go',
+        'PostgreSQL',
+        'Redis',
+        'REST APIs',
+        'Docker',
+        'Linux/Bash',
       ],
       avatarUrl: 'assets/images/imal.jpg',
     ),
@@ -270,7 +307,8 @@ class NexoraMembers {
       fullName: 'Naduni Vimadhya',
       shortName: 'Naduni',
       role: 'Product Designer & Frontend Engineer',
-      bio: 'Bridging technical code with emotional design. Passionate about creating visually captivating apps and memorable brand experiences.',
+      bio:
+          'Bridging technical code with emotional design. Passionate about creating visually captivating apps and memorable brand experiences.',
       email: 'naduni.v@nexora.dev',
       address: 'Temple Road, Negombo, Sri Lanka',
       phone: '+94 70 234 5678',
@@ -285,7 +323,8 @@ class NexoraMembers {
           title: 'G.C.E. Advanced Level (Technology Stream)',
           institution: 'Newstead Girls College, Negombo',
           year: '2022',
-          details: 'Information Communication Technology, Science for Technology.',
+          details:
+              'Information Communication Technology, Science for Technology.',
         ),
         QualificationItem(
           title: 'G.C.E. Ordinary Level',
@@ -314,17 +353,23 @@ class NexoraMembers {
         'Event Management & Stage Coordination',
       ],
       technicalSkills: [
-        'Flutter UI', 'Dart', 'Figma', 'Adobe Illustrator',
-        'Photoshop', 'CSS3/Sass', 'Lottie Animations'
+        'Flutter UI',
+        'Dart',
+        'Figma',
+        'Adobe Illustrator',
+        'Photoshop',
+        'CSS3/Sass',
+        'Lottie Animations',
       ],
       avatarUrl: 'assets/images/naduni.jpg',
     ),
     MemberData(
       id: 6,
-      fullName: 'Nimthaka Bandara',
+      fullName: 'Nimthaka Geenath',
       shortName: 'Nimthaka',
-      role: 'Mobile Systems & IoT Engineer',
-      bio: 'Enthusiastic about connecting physical hardware with intuitive mobile applications through BLE, MQTT and reactive Flutter architectures.',
+      role: 'Full Stack Developer',
+      bio:
+          'Enthusiastic about connecting physical hardware with intuitive mobile applications through BLE, MQTT and reactive Flutter architectures.',
       email: 'nimthaka.b@nexora.dev',
       address: 'Peradeniya Road, Kandy, Sri Lanka',
       phone: '+94 78 901 2345',
@@ -368,8 +413,13 @@ class NexoraMembers {
         'Drone Piloting & Videography',
       ],
       technicalSkills: [
-        'Flutter', 'C / C++', 'Python', 'Arduino',
-        'MQTT', 'Bluetooth Low Energy', 'Firebase'
+        'Flutter',
+        'C / C++',
+        'Python',
+        'Arduino',
+        'MQTT',
+        'Bluetooth Low Energy',
+        'Firebase',
       ],
       avatarUrl: 'assets/images/nimthaka.jpg',
     ),
@@ -378,7 +428,8 @@ class NexoraMembers {
       fullName: 'Pamodya Nethmi',
       shortName: 'Pamodya',
       role: 'DevOps & Cloud Security Analyst',
-      bio: 'Passionate about building bulletproof deployment workflows, cloud infrastructure, container orchestration, and continuous compliance.',
+      bio:
+          'Passionate about building bulletproof deployment workflows, cloud infrastructure, container orchestration, and continuous compliance.',
       email: 'pamodya.n@nexora.dev',
       address: 'Havelock Road, Colombo 05, Sri Lanka',
       phone: '+94 77 654 3210',
@@ -387,7 +438,8 @@ class NexoraMembers {
           title: 'National Diploma in Technology (NDT) in IT',
           institution: 'Institute of Technology, University of Moratuwa',
           year: '2023 - Present',
-          details: 'Information Security, Systems Administration & Cloud Engineering.',
+          details:
+              'Information Security, Systems Administration & Cloud Engineering.',
         ),
         QualificationItem(
           title: 'G.C.E. Advanced Level (Physical Science)',
@@ -422,8 +474,14 @@ class NexoraMembers {
         'Debate & Parliamentary Adjudication',
       ],
       technicalSkills: [
-        'Docker', 'Kubernetes', 'GitHub Actions', 'Linux',
-        'Terraform', 'Python', 'Bash Scripting', 'Flutter'
+        'Docker',
+        'Kubernetes',
+        'GitHub Actions',
+        'Linux',
+        'Terraform',
+        'Python',
+        'Bash Scripting',
+        'Flutter',
       ],
       avatarUrl: 'assets/images/pamodya.jpg',
     ),
@@ -432,7 +490,8 @@ class NexoraMembers {
       fullName: 'Rukshan Mohottige',
       shortName: 'Rukshan',
       role: 'Software Engineering',
-      bio: 'Information Technology student at the Institute of Technology, University of Moratuwa, with hands-on experience designing and building full-stack web applications, RESTful services, and database systems.',
+      bio:
+          'Information Technology student at the Institute of Technology, University of Moratuwa, with hands-on experience designing and building full-stack web applications, RESTful services, and database systems.',
       email: 'rukshanmohottige@gmail.com',
       address: 'Kandy, Sri Lanka',
       phone: '+94 74 134 2646',
@@ -470,8 +529,17 @@ class NexoraMembers {
       ],
       specialTalents: [],
       technicalSkills: [
-        'Java', 'Python', 'PHP', 'JavaScript', 'Spring Boot',
-        'Flutter', 'React', 'MySQL', 'Firebase', 'Docker', 'Git'
+        'Java',
+        'Python',
+        'PHP',
+        'JavaScript',
+        'Spring Boot',
+        'Flutter',
+        'React',
+        'MySQL',
+        'Firebase',
+        'Docker',
+        'Git',
       ],
       avatarUrl: 'assets/images/rukshan.jpg',
     ),
@@ -480,7 +548,8 @@ class NexoraMembers {
       fullName: 'Buddhika Sandaru',
       shortName: 'Sandaru',
       role: 'Full Stack Web & Data Science Specialist',
-      bio: 'Passionate about extracting actionable insights from complex datasets and building beautiful, responsive interactive dashboards.',
+      bio:
+          'Passionate about extracting actionable insights from complex datasets and building beautiful, responsive interactive dashboards.',
       email: 'sandaru.b@nexora.dev',
       address: 'Wackwella Road, Galle, Sri Lanka',
       phone: '+94 72 345 6781',
@@ -489,13 +558,15 @@ class NexoraMembers {
           title: 'National Diploma in Technology (NDT) in IT',
           institution: 'Institute of Technology, University of Moratuwa',
           year: '2023 - Present',
-          details: 'Data Science, Machine Learning, Web Technologies & Statistics.',
+          details:
+              'Data Science, Machine Learning, Web Technologies & Statistics.',
         ),
         QualificationItem(
           title: 'G.C.E. Advanced Level (Physical Science)',
           institution: 'Richmond College, Galle',
           year: '2022',
-          details: 'Combined Maths, Physics, Chemistry with First Class Honors.',
+          details:
+              'Combined Maths, Physics, Chemistry with First Class Honors.',
         ),
         QualificationItem(
           title: 'G.C.E. Ordinary Level',
@@ -524,17 +595,20 @@ class NexoraMembers {
         'Rubik\'s Cube Speedcubing (Sub-20s)',
       ],
       technicalSkills: [
-        'Python', 'Pandas', 'Flutter', 'Dart',
-        'FastAPI', 'PostgreSQL', 'Scikit-learn', 'Tableau'
+        'Python',
+        'Pandas',
+        'Flutter',
+        'Dart',
+        'FastAPI',
+        'PostgreSQL',
+        'Scikit-learn',
+        'Tableau',
       ],
       avatarUrl: 'assets/images/sandaru.jpg',
     ),
   ];
 
   static MemberData getById(int id) {
-    return list.firstWhere(
-      (m) => m.id == id,
-      orElse: () => list.first,
-    );
+    return list.firstWhere((m) => m.id == id, orElse: () => list.first);
   }
 }
