@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// Bio screen for Dilki Ishara Nanayakkara.
-///
-/// Design: decorative gradient hero with a circular profile photo, tabbed
-/// content, education timeline, animated skill bars and a light/dark toggle.
+
 class DilkiBioScreen extends StatefulWidget {
   const DilkiBioScreen({super.key});
 
@@ -14,9 +11,7 @@ class DilkiBioScreen extends StatefulWidget {
 
 class _DilkiBioScreenState extends State<DilkiBioScreen>
     with SingleTickerProviderStateMixin {
-  // ---------------------------------------------------------------------------
-  // Profile data (edit these to update the screen).
-  // ---------------------------------------------------------------------------
+
   static const String _name = 'Dilki Ishara Nanayakkara';
   static const String _role = 'Aspiring Software Engineer (Full-Stack & Data)';
   static const String _address = 'Galle, Sri Lanka';
@@ -28,14 +23,10 @@ class _DilkiBioScreenState extends State<DilkiBioScreen>
       'secure REST APIs, a full-stack tourism web app in a team of five, and '
       'data pipelines on PostgreSQL.';
 
-  /// Optional background picture for the hero. Leave null to use the
-  /// generated gradient. To use your own, add the file to assets/images/
-  /// and set e.g. 'assets/images/dilki_bg.jpg'.
+
   static const String? _heroBackgroundPath = null;
 
-  /// Photo framing inside the circle.
-  /// [_photoZoom] > 1 zooms in. [_photoFocus] is the point (x, y in -1..1)
-  /// that stays fixed while zooming; move it towards your face.
+ 
   static const double _photoZoom = 1.8;
   static const Alignment _photoFocus = Alignment(0, 0.6);
 
@@ -86,9 +77,7 @@ class _DilkiBioScreenState extends State<DilkiBioScreen>
     _Talent(Icons.sports_basketball, 'Sports'),
   ];
 
-  // ---------------------------------------------------------------------------
-  // State
-  // ---------------------------------------------------------------------------
+
   late final TabController _tabController;
   bool _isFavourite = false;
   bool _isDark = false;
@@ -118,9 +107,7 @@ class _DilkiBioScreenState extends State<DilkiBioScreen>
       );
   }
 
-  // ---------------------------------------------------------------------------
-  // UI
-  // ---------------------------------------------------------------------------
+ 
   @override
   Widget build(BuildContext context) {
     final palette = _isDark ? _Palette.dark : _Palette.light;
@@ -514,9 +501,7 @@ class _DilkiBioScreenState extends State<DilkiBioScreen>
   }
 }
 
-// -----------------------------------------------------------------------------
-// Data models
-// -----------------------------------------------------------------------------
+
 
 class _Qualification {
   const _Qualification({
@@ -547,9 +532,7 @@ class _Talent {
   final String label;
 }
 
-// -----------------------------------------------------------------------------
-// Theme palette
-// -----------------------------------------------------------------------------
+
 
 class _Palette {
   const _Palette({
@@ -628,9 +611,7 @@ class _HeroPatternPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
-// -----------------------------------------------------------------------------
-// Reusable widgets
-// -----------------------------------------------------------------------------
+
 
 class _SectionCard extends StatelessWidget {
   const _SectionCard({
